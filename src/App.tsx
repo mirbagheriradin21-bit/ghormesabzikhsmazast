@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import LiveTelemetry from "./pages/LiveTelemetry";
 import LiveAnalysis from "./pages/LiveAnalysis";
 import TrackMapPage from "./pages/TrackMapPage";
 import AIStrategy from "./pages/AIStrategy";
@@ -21,6 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/live-telemetry" element={<LiveTelemetry />} />
           <Route path="/live-analysis" element={<LiveAnalysis />} />
           <Route path="/track-map" element={<TrackMapPage />} />
           <Route path="/ai-strategy" element={<AIStrategy />} />

@@ -1,4 +1,4 @@
-import { Activity, Map, Brain, Bell, LayoutDashboard, Database } from "lucide-react";
+import { Activity, Map, Brain, Bell, LayoutDashboard, Database, Radio } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import fzeroLogo from "@/assets/fzero-logo.jpeg";
@@ -19,6 +19,7 @@ import {
 
 const menuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
+  { title: "Live Telemetry", url: "/live-telemetry", icon: Radio },
   { title: "Live Analysis", url: "/live-analysis", icon: Activity },
   { title: "Track Map", url: "/track-map", icon: Map },
   { title: "AI Strategy", url: "/ai-strategy", icon: Brain },
