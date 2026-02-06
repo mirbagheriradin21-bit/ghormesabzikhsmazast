@@ -1,62 +1,100 @@
-import { Gauge, Zap, Radio, BatteryCharging } from "lucide-react";
+import { Gauge, Zap, Radio, BatteryCharging, Activity, Thermometer } from "lucide-react";
 import { TelemetryCard } from "@/components/dashboard/TelemetryCard";
-import { SpeedChart } from "@/components/dashboard/SpeedChart";
-import { EnergyChart } from "@/components/dashboard/EnergyChart";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { useTelemetryData } from "@/hooks/useTelemetryData";
-import { getTelemetrySummary, getAnalyzedTelemetryData } from "@/data/telemetryData";
+import { ConnectionButtons } from "@/components/dashboard/ConnectionButtons";
+import { SabisTrackMap } from "@/components/dashboard/SabisTrackMap";
+import { PrimaryVoltageChart } from "@/components/dashboard/PrimaryVoltageChart";
+import { PrimaryCurrentChart } from "@/components/dashboard/PrimaryCurrentChart";
+import { MonteCarloPanel } from "@/components/dashboard/MonteCarloPanel";
+import { LiveAIPanel } from "@/components/dashboard/LiveAIPanel";
+import { SecondaryVoltageChart } from "@/components/dashboard/SecondaryVoltageChart";
+import { useConnection } from "@/contexts/ConnectionContext";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 export default function Dashboard() {
-  const { currentData, historicalData } = useTelemetryData();
-  const summary = getTelemetrySummary();
-  const analyzedData = getAnalyzedTelemetryData();
-  const criticalRows = analyzedData.filter(d => d.status === "critical");
-  const warningRows = analyzedData.filter(d => d.status === "warning");
+  const { 
+    isPrimaryConnected, 
+    isSecondaryConnected,
+    currentPrimarySample,
+    primaryStreamIndex,
+    secondaryStreamIndex,
+  } = useConnection();
 
   return (
     <DashboardLayout>
       <div className="max-w-[1600px] mx-auto space-y-6">
-        {/* Page Header */}
-        <div className="flex items-center justify-between">
+        {/* Page Header with Connection Buttons */}
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h1 className="font-display text-2xl font-bold text-foreground">Dashboard Overview</h1>
-            <p className="text-sm text-muted-foreground">Real-time telemetry summary</p>
+            <p className="text-sm text-muted-foreground">
+              {isPrimaryConnected 
+                ? `Streaming telemetry • ${primaryStreamIndex} samples received`
+                : "Press Connect to start live telemetry"}
+            </p>
           </div>
+          <ConnectionButtons />
         </div>
 
-        {/* Summary Cards */}
+        {/* Summary Cards - Only show data when connected */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <TelemetryCard
-            title="Avg Voltage"
-            value={summary.avgVoltage.toFixed(2)}
+            title="Voltage"
+            value={isPrimaryConnected && currentPrimarySample ? currentPrimarySample.V_car_last.toFixed(2) : "--"}
             unit="V"
             icon={<Zap className="h-4 w-4" />}
-            status={summary.avgVoltage > 42 ? "optimal" : "warning"}
+            status={isPrimaryConnected ? (currentPrimarySample && currentPrimarySample.V_car_last > 44 ? "optimal" : "warning") : "normal"}
           />
           <TelemetryCard
-            title="Max Sag"
-            value={summary.maxSag.toFixed(2)}
-            unit="V"
+            title="Current"
+            value={isPrimaryConnected && currentPrimarySample ? currentPrimarySample.I_last.toFixed(1) : "--"}
+            unit="A"
             icon={<BatteryCharging className="h-4 w-4" />}
-            status={summary.maxSag > 5 ? "critical" : summary.maxSag > 2 ? "warning" : "optimal"}
+            status={isPrimaryConnected ? (currentPrimarySample && currentPrimarySample.I_last > 50 ? "warning" : "optimal") : "normal"}
           />
           <TelemetryCard
-            title="Critical Events"
-            value={summary.criticalEvents}
-            unit="events"
+            title="Power"
+            value={isPrimaryConnected && currentPrimarySample ? currentPrimarySample.power_w.toFixed(0) : "--"}
+            unit="W"
+            icon={<Activity className="h-4 w-4" />}
+            status={isPrimaryConnected ? (currentPrimarySample && currentPrimarySample.power_w > 2000 ? "warning" : "optimal") : "normal"}
+          />
+          <TelemetryCard
+            title="Signal"
+            value={isPrimaryConnected && currentPrimarySample ? Math.round(currentPrimarySample.rssi_dbm) : "--"}
+            unit="dBm"
             icon={<Radio className="h-4 w-4" />}
-            status={summary.criticalEvents > 0 ? "critical" : "optimal"}
-          />
-          <TelemetryCard
-            title="Total Readings"
-            value={summary.totalReadings}
-            unit="rows"
-            icon={<Gauge className="h-4 w-4" />}
-            status="normal"
+            trendValue={isPrimaryConnected && currentPrimarySample ? `SNR: ${currentPrimarySample.snr_db.toFixed(1)} dB` : ""}
+            status={isPrimaryConnected ? (currentPrimarySample && currentPrimarySample.rssi_dbm < -90 ? "warning" : "optimal") : "normal"}
           />
         </div>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Track Map */}
+          <SabisTrackMap className="lg:row-span-2" />
+          
+          {/* AI Panel */}
+          <LiveAIPanel />
+          
+          {/* Monte Carlo Simulation */}
+          <MonteCarloPanel />
+        </div>
+
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Primary Voltage Chart */}
+          <PrimaryVoltageChart />
+          
+          {/* Primary Current Chart */}
+          <PrimaryCurrentChart />
+        </div>
+
+        {/* Secondary Voltage Chart (only shows when orange button pressed) */}
+        {isSecondaryConnected && (
+          <SecondaryVoltageChart />
+        )}
 
         {/* Quick Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -79,65 +117,23 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-medium text-foreground">Track Map</h3>
-                <p className="text-sm text-muted-foreground mt-1">Dubai Autodrome visualization</p>
+                <p className="text-sm text-muted-foreground mt-1">SABIS track visualization</p>
               </div>
               <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
           </Link>
           <Link 
-            to="/data-analysis" 
+            to="/ai-strategy" 
             className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors group"
           >
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-medium text-foreground">AI Data Analysis</h3>
-                <p className="text-sm text-muted-foreground mt-1">Line-by-line AI insights</p>
+                <h3 className="font-medium text-foreground">AI Strategy</h3>
+                <p className="text-sm text-muted-foreground mt-1">Quantum-enhanced predictions</p>
               </div>
               <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
           </Link>
-        </div>
-
-        {/* Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="bg-card rounded-lg border border-border p-4">
-            <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4">
-              Speed Overview
-            </h3>
-            <SpeedChart data={historicalData} />
-          </div>
-          <div className="bg-card rounded-lg border border-border p-4">
-            <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4">
-              Energy Overview
-            </h3>
-            <EnergyChart data={historicalData} />
-          </div>
-        </div>
-
-        {/* Recent Alerts Preview */}
-        <div className="bg-card rounded-lg border border-border p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-              Recent Critical Events
-            </h3>
-            <Link to="/data-analysis" className="text-xs text-primary hover:underline">
-              View All →
-            </Link>
-          </div>
-          <div className="space-y-2">
-            {criticalRows.slice(0, 3).map((row) => (
-              <div key={row.id} className="flex items-start gap-3 p-3 bg-destructive/10 border border-destructive/30 rounded-lg">
-                <div className="h-2 w-2 mt-1.5 rounded-full bg-destructive animate-pulse" />
-                <div>
-                  <span className="font-mono text-sm text-foreground">Row {row.id} @ {row.time_recv_s}s</span>
-                  <p className="text-sm text-muted-foreground">{row.aiAnalysis}</p>
-                </div>
-              </div>
-            ))}
-            {criticalRows.length === 0 && (
-              <p className="text-sm text-muted-foreground text-center py-4">No critical events detected</p>
-            )}
-          </div>
         </div>
       </div>
     </DashboardLayout>
