@@ -19,6 +19,7 @@ export default function Dashboard() {
     currentPrimarySample,
     primaryStreamIndex,
     secondaryStreamIndex,
+    currentInsight,
   } = useConnection();
 
   return (
