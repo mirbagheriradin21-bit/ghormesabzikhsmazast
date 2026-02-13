@@ -2,12 +2,17 @@ import { ReactNode } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { StatusBar } from "@/components/dashboard/StatusBar";
+import { BackendStatusIndicator } from "@/components/dashboard/BackendStatusIndicator";
+import { ConnectionGuideModal } from "@/components/dashboard/ConnectionGuideModal";
+import { useConnection } from "@/contexts/ConnectionContext";
 
 interface DashboardLayoutProps {
   children: ReactNode;
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const { isPrimaryConnected } = useConnection();
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
@@ -24,9 +29,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <span className="text-sm text-muted-foreground">Dubai Autodrome</span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-success pulse-live" />
-              <span className="text-xs text-success font-medium uppercase tracking-wider">Live</span>
+            <div className="flex items-center gap-3">
+              <BackendStatusIndicator />
+              <ConnectionGuideModal />
+              {isPrimaryConnected && (
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-success pulse-live" />
+                  <span className="text-xs text-success font-medium uppercase tracking-wider">Live</span>
+                </div>
+              )}
             </div>
           </header>
 
@@ -41,7 +52,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           />
 
           {/* Main Content */}
-          <main className="flex-1 p-4 overflow-auto grid-pattern">
+          <main className={`flex-1 p-4 overflow-auto grid-pattern transition-all duration-500 ${isPrimaryConnected ? 'shadow-[inset_0_0_60px_hsl(var(--primary)/0.03)]' : ''}`}>
             {children}
           </main>
 
