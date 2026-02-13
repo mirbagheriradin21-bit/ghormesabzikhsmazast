@@ -20,6 +20,11 @@ export interface PrimaryTelemetryRow {
   az_last: number;
   a_tot_last: number;
   ax_avg: number;
+  lat?: number;
+  lon?: number;
+  speed_kmh?: number;
+  sats?: number;
+  hdop?: number;
   rssi_dbm: number;
   snr_db: number;
   // Computed fields

@@ -24,6 +24,10 @@ interface ConnectionContextType {
   currentInsight: AIInsight | null;
   insightHistory: AIInsight[];
   anomalyAlerts: AnomalyAlert[];
+  // Backend bridging
+  backendConnected: boolean;
+  backendUrl: string;
+  setBackendUrl: (url: string) => void;
   // Actions
   connectPrimary: () => void;
   connectSecondary: () => void;
@@ -45,7 +49,8 @@ export function ConnectionProvider({ children }: { children: React.ReactNode }) 
   const [currentInsight, setCurrentInsight] = useState<AIInsight | null>(null);
   const [insightHistory, setInsightHistory] = useState<AIInsight[]>([]);
   const [anomalyAlerts, setAnomalyAlerts] = useState<AnomalyAlert[]>([]);
-
+  const [backendUrl, setBackendUrlState] = useState('http://localhost:8000');
+  const [backendConnected, setBackendConnected] = useState(false);
   const primaryIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const secondaryIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const trackIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -166,6 +171,14 @@ export function ConnectionProvider({ children }: { children: React.ReactNode }) 
     setSecondaryStreamIndex(0);
   }, []);
 
+  const setBackendUrl = useCallback((url: string) => {
+    setBackendUrlState(url);
+    // Try to connect to backend
+    fetch(`${url}/health`, { signal: AbortSignal.timeout(2000) })
+      .then(r => { if (r.ok) setBackendConnected(true); else setBackendConnected(false); })
+      .catch(() => setBackendConnected(false));
+  }, []);
+
   return (
     <ConnectionContext.Provider value={{
       isPrimaryConnected, isSecondaryConnected,
@@ -174,6 +187,7 @@ export function ConnectionProvider({ children }: { children: React.ReactNode }) 
       primaryStreamIndex, secondaryStreamIndex,
       monteCarloValue, trackPosition,
       currentInsight, insightHistory, anomalyAlerts,
+      backendConnected, backendUrl, setBackendUrl,
       connectPrimary, connectSecondary, disconnectPrimary, disconnectSecondary,
     }}>
       {children}
