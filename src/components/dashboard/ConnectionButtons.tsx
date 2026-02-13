@@ -18,9 +18,9 @@ export function ConnectionButtons() {
       <button
         onClick={isPrimaryConnected ? disconnectPrimary : connectPrimary}
         className={cn(
-          "relative flex items-center gap-3 px-6 py-3 rounded-lg font-display text-sm font-semibold uppercase tracking-wider transition-all duration-300",
+          "relative flex items-center gap-3 px-6 py-3 rounded-xl font-display text-sm font-semibold uppercase tracking-wider transition-all duration-300",
           isPrimaryConnected
-            ? "bg-success text-success-foreground shadow-[0_0_20px_hsl(var(--success)/0.5)]"
+            ? "bg-success text-success-foreground shadow-[0_0_25px_hsl(var(--success)/0.5)] animate-glow"
             : "bg-foreground text-background hover:bg-foreground/90 hover:shadow-[0_0_30px_hsl(var(--foreground)/0.3)]"
         )}
       >

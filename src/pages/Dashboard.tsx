@@ -71,16 +71,22 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Main Content Grid - AI panel takes more space */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           {/* Track Map */}
-          <SabisTrackMap className="lg:row-span-2" />
+          <div className="lg:col-span-2 lg:row-span-2">
+            <SabisTrackMap />
+          </div>
           
-          {/* AI Panel */}
-          <LiveAIPanel />
+          {/* AI Panel - 60% wider (3 of 5 cols) */}
+          <div className="lg:col-span-3">
+            <LiveAIPanel />
+          </div>
           
           {/* Monte Carlo Simulation */}
-          <MonteCarloPanel />
+          <div className="lg:col-span-3">
+            <MonteCarloPanel />
+          </div>
         </div>
 
         {/* Charts Section */}

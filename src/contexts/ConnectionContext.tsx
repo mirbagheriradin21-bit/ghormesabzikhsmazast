@@ -54,10 +54,25 @@ export function ConnectionProvider({ children }: { children: React.ReactNode }) 
   const primaryIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const secondaryIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const trackIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const healthIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const aiEngineRef = useRef<AIStrategyEngine>(new AIStrategyEngine());
 
   const currentPrimarySample = primaryStreamData.length > 0 ? primaryStreamData[primaryStreamData.length - 1] : null;
   const currentSecondarySample = secondaryStreamData.length > 0 ? secondaryStreamData[secondaryStreamData.length - 1] : null;
+
+  // Poll backend health every 3 seconds
+  useEffect(() => {
+    const checkHealth = () => {
+      fetch(`${backendUrl}/health`, { signal: AbortSignal.timeout(2000) })
+        .then(r => { if (r.ok) setBackendConnected(true); else setBackendConnected(false); })
+        .catch(() => setBackendConnected(false));
+    };
+    checkHealth();
+    healthIntervalRef.current = setInterval(checkHealth, 3000);
+    return () => {
+      if (healthIntervalRef.current) clearInterval(healthIntervalRef.current);
+    };
+  }, [backendUrl]);
 
   useEffect(() => {
     return () => {
