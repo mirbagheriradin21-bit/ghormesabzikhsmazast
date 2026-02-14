@@ -1,5 +1,5 @@
-// Primary Telemetry Dataset - Triggered by white "Connect" button
-// Column names exactly as specified - V_car_sag REMOVED
+// Primary Telemetry Dataset - From antenna/serial port via logger.py
+// V_car_sag REMOVED from interface but present in raw CSV (excluded)
 
 export interface PrimaryTelemetryRow {
   time_recv_s: number;
@@ -33,179 +33,151 @@ export interface PrimaryTelemetryRow {
   status?: "normal" | "warning" | "critical" | "optimal";
 }
 
-// Primary telemetry data - exact values from specification
-export const primaryTelemetryData: PrimaryTelemetryRow[] = [
-  { time_recv_s: 0, time_send_ms: 442148, V_car_last: 42.73, V_car_avg: 42.84, V_car_min: 42.73, V_car_max: 42.94, V_esp32_last: 1.858, RAW: 2314, I_last: 55.57, I_avg: 54.46, I_min: 53.35, I_max: 55.57, I_raw: 2559, ax_last: -0.067, ay_last: 0.840, az_last: 0.026, a_tot_last: 0.843, ax_avg: -0.04, rssi_dbm: -74.00, snr_db: 12.25 },
-  { time_recv_s: 1, time_send_ms: 443148, V_car_last: 44.18, V_car_avg: 44.22, V_car_min: 44.18, V_car_max: 44.25, V_esp32_last: 1.921, RAW: 2384, I_last: 57.94, I_avg: 57.10, I_min: 56.25, I_max: 57.94, I_raw: 2595, ax_last: -0.172, ay_last: 0.916, az_last: 0.055, a_tot_last: 0.933, ax_avg: -0.25, rssi_dbm: -85.00, snr_db: 12.00 },
-  { time_recv_s: 2, time_send_ms: 444148, V_car_last: 44.37, V_car_avg: 44.02, V_car_min: 43.68, V_car_max: 44.37, V_esp32_last: 1.929, RAW: 2391, I_last: 53.35, I_avg: 45.97, I_min: 38.60, I_max: 53.35, I_raw: 2543, ax_last: 0.053, ay_last: 0.824, az_last: 0.294, a_tot_last: 0.877, ax_avg: 0.007, rssi_dbm: -79.00, snr_db: 12.50 },
-  { time_recv_s: 3, time_send_ms: 445148, V_car_last: 43.70, V_car_avg: 43.80, V_car_min: 43.70, V_car_max: 43.91, V_esp32_last: 1.900, RAW: 2366, I_last: 39.13, I_avg: 37.07, I_min: 35.00, I_max: 39.13, I_raw: 2338, ax_last: 0.062, ay_last: 1.028, az_last: 0.052, a_tot_last: 1.031, ax_avg: -0.028, rssi_dbm: -83.00, snr_db: 12.25 },
-  { time_recv_s: 4, time_send_ms: 446148, V_car_last: 44.09, V_car_avg: 44.15, V_car_min: 44.09, V_car_max: 44.21, V_esp32_last: 1.917, RAW: 2382, I_last: 33.70, I_avg: 30.68, I_min: 27.66, I_max: 33.70, I_raw: 2240, ax_last: -0.173, ay_last: 0.891, az_last: 0.155, a_tot_last: 0.921, ax_avg: -0.17, rssi_dbm: -76.00, snr_db: 13.00 },
-  { time_recv_s: 5, time_send_ms: 447148, V_car_last: 43.88, V_car_avg: 44.04, V_car_min: 43.88, V_car_max: 44.21, V_esp32_last: 1.908, RAW: 2401, I_last: 41.73, I_avg: 34.93, I_min: 28.12, I_max: 41.73, I_raw: 2362, ax_last: 0.055, ay_last: 0.541, az_last: 0.490, a_tot_last: 0.732, ax_avg: -0.051, rssi_dbm: -84.00, snr_db: 12.25 },
-  { time_recv_s: 9, time_send_ms: 451148, V_car_last: 44.37, V_car_avg: 44.33, V_car_min: 44.30, V_car_max: 44.37, V_esp32_last: 1.929, RAW: 2385, I_last: 45.78, I_avg: 46.97, I_min: 45.78, I_max: 48.15, I_raw: 2457, ax_last: -0.311, ay_last: 0.699, az_last: 0.518, a_tot_last: 0.924, ax_avg: -0.22, rssi_dbm: -90.00, snr_db: 12.00 },
-  { time_recv_s: 10, time_send_ms: 452148, V_car_last: 44.11, V_car_avg: 43.85, V_car_min: 43.58, V_car_max: 44.11, V_esp32_last: 1.918, RAW: 2391, I_last: 30.80, I_avg: 36.65, I_min: 30.80, I_max: 42.49, I_raw: 2254, ax_last: -0.035, ay_last: 1.009, az_last: 0.691, a_tot_last: 1.224, ax_avg: -0.03, rssi_dbm: -97.00, snr_db: 8.75 },
-  { time_recv_s: 11, time_send_ms: 453148, V_car_last: 44.04, V_car_avg: 43.81, V_car_min: 43.58, V_car_max: 44.04, V_esp32_last: 1.915, RAW: 2384, I_last: 29.96, I_avg: 34.28, I_min: 29.96, I_max: 38.60, I_raw: 2180, ax_last: -0.199, ay_last: 0.578, az_last: 0.472, a_tot_last: 0.773, ax_avg: -0.14, rssi_dbm: -92.00, snr_db: 12.00 },
-  { time_recv_s: 13, time_send_ms: 455148, V_car_last: 43.56, V_car_avg: 43.63, V_car_min: 43.56, V_car_max: 43.70, V_esp32_last: 1.894, RAW: 2356, I_last: 39.74, I_avg: 39.82, I_min: 39.74, I_max: 39.90, I_raw: 2339, ax_last: -0.120, ay_last: 0.752, az_last: 0.388, a_tot_last: 0.854, ax_avg: -0.21, rssi_dbm: -92.00, snr_db: 11.75 },
-  { time_recv_s: 14, time_send_ms: 456148, V_car_last: 43.91, V_car_avg: 43.85, V_car_min: 43.79, V_car_max: 43.91, V_esp32_last: 1.909, RAW: 2371, I_last: 31.49, I_avg: 35.46, I_min: 31.49, I_max: 39.44, I_raw: 2195, ax_last: -0.242, ay_last: 1.187, az_last: 0.275, a_tot_last: 1.242, ax_avg: -0.16, rssi_dbm: -85.00, snr_db: 11.75 },
-  { time_recv_s: 15, time_send_ms: 457148, V_car_last: 44.11, V_car_avg: 43.99, V_car_min: 43.86, V_car_max: 44.11, V_esp32_last: 1.918, RAW: 2384, I_last: 30.19, I_avg: 33.59, I_min: 30.19, I_max: 36.99, I_raw: 2170, ax_last: 0.236, ay_last: 0.037, az_last: 0.542, a_tot_last: 0.592, ax_avg: 0.110, rssi_dbm: -79.00, snr_db: 12.25 },
-  { time_recv_s: 16, time_send_ms: 458148, V_car_last: 43.79, V_car_avg: 44.04, V_car_min: 43.79, V_car_max: 44.30, V_esp32_last: 1.904, RAW: 2367, I_last: 38.60, I_avg: 43.45, I_min: 38.60, I_max: 48.30, I_raw: 2275, ax_last: -0.191, ay_last: 0.833, az_last: 0.060, a_tot_last: 0.857, ax_avg: -0.15, rssi_dbm: -85.00, snr_db: 12.00 },
-  { time_recv_s: 17, time_send_ms: 459148, V_car_last: 44.30, V_car_avg: 44.10, V_car_min: 43.91, V_car_max: 44.30, V_esp32_last: 1.926, RAW: 2403, I_last: 44.41, I_avg: 40.51, I_min: 36.61, I_max: 44.41, I_raw: 2411, ax_last: -0.001, ay_last: 0.958, az_last: 0.182, a_tot_last: 0.975, ax_avg: -0.03, rssi_dbm: -76.00, snr_db: 12.00 },
-  { time_recv_s: 18, time_send_ms: 460148, V_car_last: 44.27, V_car_avg: 44.23, V_car_min: 44.18, V_car_max: 44.27, V_esp32_last: 1.925, RAW: 2396, I_last: 24.84, I_avg: 25.79, I_min: 24.84, I_max: 26.75, I_raw: 2083, ax_last: -0.062, ay_last: 0.854, az_last: 0.010, a_tot_last: 0.857, ax_avg: -0.03, rssi_dbm: -81.00, snr_db: 12.75 },
-  { time_recv_s: 19, time_send_ms: 461148, V_car_last: 44.57, V_car_avg: 44.29, V_car_min: 44.00, V_car_max: 44.57, V_esp32_last: 1.938, RAW: 2447, I_last: 41.04, I_avg: 36.72, I_min: 32.40, I_max: 41.04, I_raw: 2390, ax_last: 0.083, ay_last: 1.095, az_last: 0.142, a_tot_last: 1.107, ax_avg: -0.002, rssi_dbm: -77.00, snr_db: 12.25 },
-  { time_recv_s: 20, time_send_ms: 462148, V_car_last: 44.21, V_car_avg: 44.15, V_car_min: 44.09, V_car_max: 44.21, V_esp32_last: 1.922, RAW: 2394, I_last: 29.57, I_avg: 30.68, I_min: 29.57, I_max: 31.79, I_raw: 2128, ax_last: -0.331, ay_last: 1.992, az_last: 0.382, a_tot_last: 2.055, ax_avg: -0.20, rssi_dbm: -91.00, snr_db: 12.25 },
-  { time_recv_s: 21, time_send_ms: 463148, V_car_last: 44.23, V_car_avg: 44.16, V_car_min: 44.09, V_car_max: 44.23, V_esp32_last: 1.923, RAW: 2387, I_last: 32.48, I_avg: 32.59, I_min: 32.48, I_max: 32.71, I_raw: 2173, ax_last: -0.002, ay_last: 0.602, az_last: 0.167, a_tot_last: 0.625, ax_avg: -0.05, rssi_dbm: -87.00, snr_db: 12.25 },
-  { time_recv_s: 23, time_send_ms: 465148, V_car_last: 44.60, V_car_avg: 44.63, V_car_min: 44.60, V_car_max: 44.67, V_esp32_last: 1.939, RAW: 2416, I_last: 29.88, I_avg: 29.65, I_min: 29.42, I_max: 29.88, I_raw: 2302, ax_last: -0.003, ay_last: 0.739, az_last: 0.372, a_tot_last: 0.827, ax_avg: 0.006, rssi_dbm: -84.00, snr_db: 11.75 },
-  { time_recv_s: 24, time_send_ms: 466148, V_car_last: 47.43, V_car_avg: 48.24, V_car_min: 47.43, V_car_max: 49.06, V_esp32_last: 2.062, RAW: 2583, I_last: -25.16, I_avg: -21.38, I_min: -25.16, I_max: -17.59, I_raw: 1328, ax_last: -0.171, ay_last: 1.274, az_last: 0.418, a_tot_last: 1.352, ax_avg: 0, rssi_dbm: -83.00, snr_db: 12.00 },
-  { time_recv_s: 27, time_send_ms: 469148, V_car_last: 44.07, V_car_avg: 43.96, V_car_min: 43.86, V_car_max: 44.07, V_esp32_last: 1.916, RAW: 2373, I_last: 62.22, I_avg: 48.92, I_min: 35.61, I_max: 62.22, I_raw: 2554, ax_last: -0.223, ay_last: 0.998, az_last: 0.212, a_tot_last: 1.045, ax_avg: -0.27, rssi_dbm: -95.00, snr_db: 11.00 },
-  { time_recv_s: 28, time_send_ms: 470148, V_car_last: 44.11, V_car_avg: 44.06, V_car_min: 44.00, V_car_max: 44.11, V_esp32_last: 1.918, RAW: 2366, I_last: 40.28, I_avg: 46.81, I_min: 40.28, I_max: 53.35, I_raw: 2494, ax_last: -0.093, ay_last: 0.743, az_last: 0.245, a_tot_last: 0.788, ax_avg: -0.13, rssi_dbm: -84.00, snr_db: 12.25 },
-  { time_recv_s: 30, time_send_ms: 472148, V_car_last: 43.33, V_car_avg: 43.34, V_car_min: 43.33, V_car_max: 43.35, V_esp32_last: 1.884, RAW: 2346, I_last: 44.48, I_avg: 46.85, I_min: 44.48, I_max: 49.22, I_raw: 2422, ax_last: -0.299, ay_last: 0.899, az_last: 0.367, a_tot_last: 1.016, ax_avg: -0.16, rssi_dbm: -84.00, snr_db: 12.00 },
-  { time_recv_s: 32, time_send_ms: 474148, V_car_last: 43.72, V_car_avg: 43.68, V_car_min: 43.63, V_car_max: 43.72, V_esp32_last: 1.901, RAW: 2361, I_last: 30.87, I_avg: 32.79, I_min: 30.87, I_max: 34.70, I_raw: 2192, ax_last: -0.319, ay_last: 1.255, az_last: 0.452, a_tot_last: 1.371, ax_avg: -0.21, rssi_dbm: -89.00, snr_db: 11.50 },
-  { time_recv_s: 33, time_send_ms: 475148, V_car_last: 43.75, V_car_avg: 43.96, V_car_min: 43.75, V_car_max: 44.18, V_esp32_last: 1.902, RAW: 2344, I_last: 48.07, I_avg: 50.22, I_min: 48.07, I_max: 52.36, I_raw: 2434, ax_last: -0.033, ay_last: 0.694, az_last: 0.447, a_tot_last: 0.826, ax_avg: -0.02, rssi_dbm: -84.00, snr_db: 11.75 },
-  { time_recv_s: 34, time_send_ms: 476148, V_car_last: 44.21, V_car_avg: 43.94, V_car_min: 43.68, V_car_max: 44.21, V_esp32_last: 1.922, RAW: 2383, I_last: 48.30, I_avg: 45.86, I_min: 43.41, I_max: 48.30, I_raw: 2549, ax_last: -0.186, ay_last: 0.898, az_last: 0.226, a_tot_last: 0.944, ax_avg: -0.13, rssi_dbm: -78.00, snr_db: 12.25 },
-  { time_recv_s: 35, time_send_ms: 477148, V_car_last: 43.58, V_car_avg: 43.88, V_car_min: 43.58, V_car_max: 44.18, V_esp32_last: 1.895, RAW: 2357, I_last: 39.13, I_avg: 34.58, I_min: 30.03, I_max: 39.13, I_raw: 2303, ax_last: 0.002, ay_last: 1.096, az_last: -0.022, a_tot_last: 1.096, ax_avg: -0.00, rssi_dbm: -91.00, snr_db: 10.75 },
-  { time_recv_s: 36, time_send_ms: 478148, V_car_last: 44.07, V_car_avg: 44.13, V_car_min: 44.07, V_car_max: 44.18, V_esp32_last: 1.916, RAW: 2383, I_last: 27.59, I_avg: 28.24, I_min: 27.59, I_max: 28.89, I_raw: 2138, ax_last: -0.031, ay_last: 1.203, az_last: 0.105, a_tot_last: 1.208, ax_avg: 0.013, rssi_dbm: -64.00, snr_db: 12.75 },
-  { time_recv_s: 37, time_send_ms: 479148, V_car_last: 43.93, V_car_avg: 43.92, V_car_min: 43.91, V_car_max: 43.93, V_esp32_last: 1.910, RAW: 2379, I_last: 34.70, I_avg: 34.77, I_min: 34.70, I_max: 34.85, I_raw: 2228, ax_last: -0.181, ay_last: 1.610, az_last: 0.154, a_tot_last: 1.627, ax_avg: -0.12, rssi_dbm: -48.00, snr_db: 12.75 },
-  { time_recv_s: 38, time_send_ms: 480148, V_car_last: 44.37, V_car_avg: 44.46, V_car_min: 44.37, V_car_max: 44.55, V_esp32_last: 1.929, RAW: 2394, I_last: 27.43, I_avg: 34.31, I_min: 27.43, I_max: 41.19, I_raw: 2192, ax_last: -0.045, ay_last: 1.045, az_last: -0.012, a_tot_last: 1.046, ax_avg: -0.0, rssi_dbm: -63.00, snr_db: 13.50 },
-  { time_recv_s: 39, time_send_ms: 481148, V_car_last: 43.86, V_car_avg: 44.13, V_car_min: 43.86, V_car_max: 44.39, V_esp32_last: 1.907, RAW: 2369, I_last: 34.70, I_avg: 38.63, I_min: 34.70, I_max: 42.57, I_raw: 2238, ax_last: 0.044, ay_last: 1.279, az_last: -0.067, a_tot_last: 1.281, ax_avg: -0.04, rssi_dbm: -68.00, snr_db: 12.25 },
-  { time_recv_s: 40, time_send_ms: 482148, V_car_last: 44.44, V_car_avg: 44.29, V_car_min: 44.14, V_car_max: 44.44, V_esp32_last: 1.932, RAW: 2399, I_last: 24.45, I_avg: 27.93, I_min: 24.45, I_max: 31.41, I_raw: 2095, ax_last: -0.084, ay_last: 0.661, az_last: 0.140, a_tot_last: 0.681, ax_avg: -0.14, rssi_dbm: -75.00, snr_db: 12.75 },
-  { time_recv_s: 41, time_send_ms: 483148, V_car_last: 44.53, V_car_avg: 44.59, V_car_min: 44.53, V_car_max: 44.64, V_esp32_last: 1.936, RAW: 2407, I_last: 30.65, I_avg: 34.70, I_min: 30.65, I_max: 38.75, I_raw: 2282, ax_last: -0.027, ay_last: 0.786, az_last: 0.347, a_tot_last: 0.859, ax_avg: -0.05, rssi_dbm: -72.00, snr_db: 12.50 },
-  { time_recv_s: 42, time_send_ms: 484148, V_car_last: 44.57, V_car_avg: 44.47, V_car_min: 44.37, V_car_max: 44.57, V_esp32_last: 1.938, RAW: 2417, I_last: 26.13, I_avg: 25.79, I_min: 25.45, I_max: 26.13, I_raw: 2183, ax_last: -0.039, ay_last: 0.548, az_last: 0.486, a_tot_last: 0.733, ax_avg: -0.07, rssi_dbm: -80.00, snr_db: 12.50 },
-  { time_recv_s: 43, time_send_ms: 485148, V_car_last: 44.41, V_car_avg: 44.15, V_car_min: 43.88, V_car_max: 44.41, V_esp32_last: 1.931, RAW: 2397, I_last: 28.12, I_avg: 32.86, I_min: 28.12, I_max: 37.60, I_raw: 2224, ax_last: -0.168, ay_last: 0.508, az_last: 0.572, a_tot_last: 0.783, ax_avg: -0.30, rssi_dbm: -96.00, snr_db: 10.50 },
-  { time_recv_s: 44, time_send_ms: 486148, V_car_last: 43.79, V_car_avg: 43.83, V_car_min: 43.79, V_car_max: 43.86, V_esp32_last: 1.904, RAW: 2363, I_last: 36.38, I_avg: 36.57, I_min: 36.38, I_max: 36.76, I_raw: 2266, ax_last: -0.038, ay_last: 0.229, az_last: 0.595, a_tot_last: 0.639, ax_avg: -0.13, rssi_dbm: -93.00, snr_db: 10.75 },
-  { time_recv_s: 45, time_send_ms: 487148, V_car_last: 44.11, V_car_avg: 43.99, V_car_min: 43.86, V_car_max: 44.11, V_esp32_last: 1.918, RAW: 2379, I_last: 29.04, I_avg: 30.87, I_min: 29.04, I_max: 32.71, I_raw: 2247, ax_last: -0.028, ay_last: 1.217, az_last: 0.663, a_tot_last: 1.386, ax_avg: -0.12, rssi_dbm: -89.00, snr_db: 11.75 },
-  { time_recv_s: 46, time_send_ms: 488148, V_car_last: 43.49, V_car_avg: 43.55, V_car_min: 43.49, V_car_max: 43.61, V_esp32_last: 1.891, RAW: 2351, I_last: 41.35, I_avg: 39.86, I_min: 38.37, I_max: 41.35, I_raw: 2332, ax_last: -0.332, ay_last: 1.245, az_last: 0.606, a_tot_last: 1.424, ax_avg: -0.15, rssi_dbm: -88.00, snr_db: 11.50 },
-  { time_recv_s: 47, time_send_ms: 489148, V_car_last: 44.07, V_car_avg: 43.99, V_car_min: 43.91, V_car_max: 44.07, V_esp32_last: 1.916, RAW: 2382, I_last: 31.72, I_avg: 31.07, I_min: 30.42, I_max: 31.72, I_raw: 2320, ax_last: -0.070, ay_last: 0.925, az_last: 0.427, a_tot_last: 1.021, ax_avg: -0.14, rssi_dbm: -95.00, snr_db: 11.00 },
-  { time_recv_s: 50, time_send_ms: 492148, V_car_last: 43.70, V_car_avg: 43.77, V_car_min: 43.70, V_car_max: 43.84, V_esp32_last: 1.900, RAW: 2339, I_last: 44.94, I_avg: 43.76, I_min: 42.57, I_max: 44.94, I_raw: 2362, ax_last: -0.126, ay_last: 0.909, az_last: 0.402, a_tot_last: 1.002, ax_avg: -0.15, rssi_dbm: -88.00, snr_db: 11.75 },
-  { time_recv_s: 51, time_send_ms: 493148, V_car_last: 43.61, V_car_avg: 43.60, V_car_min: 43.58, V_car_max: 43.61, V_esp32_last: 1.896, RAW: 2358, I_last: 38.60, I_avg: 39.25, I_min: 38.60, I_max: 39.90, I_raw: 2278, ax_last: -0.088, ay_last: 0.760, az_last: 0.550, a_tot_last: 0.942, ax_avg: -0.10, rssi_dbm: -94.00, snr_db: 11.50 },
-  { time_recv_s: 52, time_send_ms: 494148, V_car_last: 44.18, V_car_avg: 43.55, V_car_min: 42.92, V_car_max: 44.18, V_esp32_last: 1.921, RAW: 2355, I_last: 30.03, I_avg: 35.16, I_min: 30.03, I_max: 40.28, I_raw: 2243, ax_last: -0.184, ay_last: 1.147, az_last: 0.218, a_tot_last: 1.182, ax_avg: -0.14, rssi_dbm: -95.00, snr_db: 11.25 },
-  { time_recv_s: 53, time_send_ms: 495148, V_car_last: 43.98, V_car_avg: 44.03, V_car_min: 43.98, V_car_max: 44.09, V_esp32_last: 1.912, RAW: 2373, I_last: 30.87, I_avg: 29.54, I_min: 28.20, I_max: 30.87, I_raw: 2192, ax_last: -0.052, ay_last: 1.090, az_last: 0.203, a_tot_last: 1.110, ax_avg: -0.07, rssi_dbm: -97.00, snr_db: 10.50 },
-  { time_recv_s: 54, time_send_ms: 496148, V_car_last: 43.81, V_car_avg: 43.99, V_car_min: 43.81, V_car_max: 44.16, V_esp32_last: 1.905, RAW: 2373, I_last: 34.70, I_avg: 37.45, I_min: 34.70, I_max: 40.20, I_raw: 2218, ax_last: -0.110, ay_last: 0.687, az_last: 0.523, a_tot_last: 0.871, ax_avg: -0.09, rssi_dbm: -102.00, snr_db: 8.00 },
-  { time_recv_s: 57, time_send_ms: 499148, V_car_last: 44.48, V_car_avg: 44.48, V_car_min: 44.48, V_car_max: 44.48, V_esp32_last: 1.934, RAW: 2407, I_last: 30.65, I_avg: 33.21, I_min: 30.65, I_max: 35.77, I_raw: 2286, ax_last: -0.062, ay_last: 1.051, az_last: 0.102, a_tot_last: 1.058, ax_avg: -0.10, rssi_dbm: -89.00, snr_db: 12.50 },
-  { time_recv_s: 58, time_send_ms: 500148, V_car_last: 44.44, V_car_avg: 44.67, V_car_min: 44.44, V_car_max: 44.90, V_esp32_last: 1.932, RAW: 2402, I_last: 20.94, I_avg: 27.28, I_min: 20.94, I_max: 33.63, I_raw: 2064, ax_last: 0.050, ay_last: 0.886, az_last: 0.412, a_tot_last: 0.978, ax_avg: -0.041, rssi_dbm: -88.00, snr_db: 12.00 },
-  { time_recv_s: 59, time_send_ms: 501148, V_car_last: 44.00, V_car_avg: 44.14, V_car_min: 44.00, V_car_max: 44.27, V_esp32_last: 1.913, RAW: 2378, I_last: 32.71, I_avg: 29.80, I_min: 26.90, I_max: 32.71, I_raw: 2214, ax_last: -0.056, ay_last: 0.597, az_last: 0.099, a_tot_last: 0.608, ax_avg: 0.012, rssi_dbm: -85.00, snr_db: 11.50 },
-  { time_recv_s: 61, time_send_ms: 503148, V_car_last: 44.57, V_car_avg: 44.23, V_car_min: 43.88, V_car_max: 44.57, V_esp32_last: 1.938, RAW: 2394, I_last: 44.48, I_avg: 39.51, I_min: 34.54, I_max: 44.48, I_raw: 2350, ax_last: -0.177, ay_last: 1.186, az_last: 0.645, a_tot_last: 1.361, ax_avg: -0.17, rssi_dbm: -85.00, snr_db: 10.50 },
-  { time_recv_s: 62, time_send_ms: 504148, V_car_last: 44.07, V_car_avg: 43.94, V_car_min: 43.81, V_car_max: 44.07, V_esp32_last: 1.916, RAW: 2365, I_last: 38.52, I_avg: 37.22, I_min: 35.92, I_max: 38.52, I_raw: 2320, ax_last: -0.052, ay_last: 0.799, az_last: 0.383, a_tot_last: 0.887, ax_avg: -0.09, rssi_dbm: -82.00, snr_db: 12.25 },
-  { time_recv_s: 63, time_send_ms: 505148, V_car_last: 43.70, V_car_avg: 43.92, V_car_min: 43.70, V_car_max: 44.14, V_esp32_last: 1.900, RAW: 2355, I_last: 37.30, I_avg: 37.95, I_min: 37.30, I_max: 38.60, I_raw: 2198, ax_last: -0.205, ay_last: 1.167, az_last: 0.408, a_tot_last: 1.253, ax_avg: -0.16, rssi_dbm: -75.00, snr_db: 12.50 },
-  { time_recv_s: 64, time_send_ms: 506148, V_car_last: 43.52, V_car_avg: 43.52, V_car_min: 43.52, V_car_max: 43.52, V_esp32_last: 1.892, RAW: 2386, I_last: 45.86, I_avg: 43.60, I_min: 41.35, I_max: 45.86, I_raw: 2485, ax_last: -0.515, ay_last: 0.754, az_last: 0.781, a_tot_last: 1.202, ax_avg: -0.20, rssi_dbm: -83.00, snr_db: 12.00 },
-  { time_recv_s: 67, time_send_ms: 509148, V_car_last: 48.07, V_car_avg: 48.06, V_car_min: 48.05, V_car_max: 48.07, V_esp32_last: 2.090, RAW: 2583, I_last: -22.48, I_avg: -22.48, I_min: -22.48, I_max: -22.48, I_raw: 1351, ax_last: 0.084, ay_last: 0.684, az_last: 0.500, a_tot_last: 0.852, ax_avg: 0, rssi_dbm: -78.00, snr_db: 12.00 },
-  { time_recv_s: 68, time_send_ms: 510148, V_car_last: 46.74, V_car_avg: 53.84, V_car_min: 46.74, V_car_max: 60.95, V_esp32_last: 2.032, RAW: 2559, I_last: -15.68, I_avg: -11.59, I_min: -15.68, I_max: -7.50, I_raw: 1437, ax_last: -0.059, ay_last: 0.740, az_last: 0.614, a_tot_last: 0.963, ax_avg: 0, rssi_dbm: -74.00, snr_db: 12.25 },
-  { time_recv_s: 69, time_send_ms: 511148, V_car_last: 48.32, V_car_avg: 47.82, V_car_min: 47.31, V_car_max: 48.32, V_esp32_last: 2.101, RAW: 2547, I_last: -4.83, I_avg: -4.37, I_min: -4.83, I_max: -3.91, I_raw: 1600, ax_last: 0.248, ay_last: 0.051, az_last: 1.177, a_tot_last: 1.204, ax_avg: 0.360, rssi_dbm: -83.00, snr_db: 12.00 },
-  { time_recv_s: 71, time_send_ms: 513148, V_car_last: 47.06, V_car_avg: 47.00, V_car_min: 46.94, V_car_max: 47.06, V_esp32_last: 2.046, RAW: 2537, I_last: 0.75, I_avg: 0.98, I_min: 0.75, I_max: 1.21, I_raw: 1682, ax_last: -0.043, ay_last: 0.983, az_last: 0.108, a_tot_last: 0.990, ax_avg: -0.046, rssi_dbm: -83.00, snr_db: 12.00 },
-  { time_recv_s: 72, time_send_ms: 514148, V_car_last: 46.97, V_car_avg: 47.01, V_car_min: 46.97, V_car_max: 47.06, V_esp32_last: 2.042, RAW: 2535, I_last: -1.16, I_avg: 0.14, I_min: -1.16, I_max: 1.44, I_raw: 1731, ax_last: -0.045, ay_last: 0.980, az_last: 0.103, a_tot_last: 0.986, ax_avg: -0.047, rssi_dbm: -79.00, snr_db: 12.25 },
-  { time_recv_s: 73, time_send_ms: 515148, V_car_last: 47.04, V_car_avg: 47.00, V_car_min: 46.97, V_car_max: 47.04, V_esp32_last: 2.045, RAW: 2533, I_last: -1.46, I_avg: -1.46, I_min: -1.46, I_max: -1.46, I_raw: 1697, ax_last: -0.050, ay_last: 0.992, az_last: 0.058, a_tot_last: 0.995, ax_avg: -0.05, rssi_dbm: -77.00, snr_db: 12.75 },
-];
-
-// Add computed power_w field
 export function computePower(row: PrimaryTelemetryRow): number {
   return row.V_car_last * row.I_last;
 }
 
-// AI Analysis for primary telemetry (no V_car_sag)
-export function analyzePrimaryRow(row: PrimaryTelemetryRow): { analysis: string; status: "normal" | "warning" | "critical" | "optimal" } {
-  const power = computePower(row);
-  const voltageRange = row.V_car_max - row.V_car_min;
-  
-  // Critical: High voltage spike
-  if (row.V_car_max > 55) {
-    return {
-      analysis: `🚨 CRITICAL: Voltage spike to ${row.V_car_max.toFixed(2)}V detected. Possible regenerative braking surge or sensor anomaly.`,
-      status: "critical"
-    };
-  }
-  
-  // Critical: High current spike
-  if (row.I_max > 60) {
-    return {
-      analysis: `⚠️ CRITICAL: High current draw ${row.I_max.toFixed(2)}A detected. Motor under heavy load. Monitor battery temperature.`,
-      status: "critical"
-    };
-  }
-  
-  // Critical: High acceleration (impact detection)
-  if (row.a_tot_last > 2.0) {
-    return {
-      analysis: `🚨 IMPACT DETECTED: Total acceleration ${row.a_tot_last.toFixed(2)}g exceeds safety threshold. Check vehicle condition.`,
-      status: "critical"
-    };
-  }
-  
-  // Warning: Regenerative braking (negative current)
-  if (row.I_last < -10) {
-    return {
-      analysis: `⚡ REGEN ACTIVE: Regenerative braking at ${Math.abs(row.I_last).toFixed(2)}A. Recovering ${Math.abs(power).toFixed(0)}W to battery.`,
-      status: "optimal"
-    };
-  }
-  
-  // Warning: Low signal quality
-  if (row.rssi_dbm < -95 || row.snr_db < 10) {
-    return {
-      analysis: `📡 SIGNAL WARNING: RSSI ${row.rssi_dbm}dBm, SNR ${row.snr_db}dB. Consider repositioning antenna.`,
-      status: "warning"
-    };
-  }
-  
-  // Warning: High voltage variation
-  if (voltageRange > 1.0) {
-    return {
-      analysis: `📊 VOLTAGE VARIATION: ${voltageRange.toFixed(2)}V range detected. Battery responding to power demands.`,
-      status: "warning"
-    };
-  }
-  
-  // Warning: High power consumption
-  if (power > 2000) {
-    return {
-      analysis: `🔋 HIGH POWER: ${power.toFixed(0)}W draw detected. Consider reducing throttle for efficiency.`,
-      status: "warning"
-    };
-  }
-  
-  // Optimal: Perfect stability
-  if (voltageRange < 0.1 && row.I_avg > 0 && row.I_avg < 40) {
-    return {
-      analysis: `✅ OPTIMAL: Stable voltage at ${row.V_car_avg.toFixed(2)}V, efficient current draw ${row.I_avg.toFixed(1)}A.`,
-      status: "optimal"
-    };
-  }
-  
-  // Normal operation
-  return {
-    analysis: `📈 NORMAL: V=${row.V_car_last.toFixed(2)}V, I=${row.I_last.toFixed(1)}A, P=${power.toFixed(0)}W. Operating within parameters.`,
-    status: "normal"
-  };
-}
-
-// Get analyzed primary data
-export function getAnalyzedPrimaryData(): (PrimaryTelemetryRow & { aiAnalysis: string; status: string; power_w: number })[] {
-  return primaryTelemetryData.map(row => {
-    const { analysis, status } = analyzePrimaryRow(row);
-    return {
-      ...row,
-      aiAnalysis: analysis,
-      status,
-      power_w: computePower(row),
-    };
-  });
-}
-
-// Summary statistics
-export function getPrimarySummary() {
-  const data = primaryTelemetryData;
-  const voltages = data.map(d => d.V_car_avg);
-  const currents = data.map(d => d.I_avg);
-  const powers = data.map(d => computePower(d));
-  
-  return {
-    avgVoltage: voltages.reduce((a, b) => a + b, 0) / voltages.length,
-    minVoltage: Math.min(...data.map(d => d.V_car_min)),
-    maxVoltage: Math.max(...data.map(d => d.V_car_max)),
-    avgCurrent: currents.reduce((a, b) => a + b, 0) / currents.length,
-    maxCurrent: Math.max(...data.map(d => d.I_max)),
-    avgPower: powers.reduce((a, b) => a + b, 0) / powers.length,
-    maxPower: Math.max(...powers),
-    avgRSSI: data.reduce((a, d) => a + d.rssi_dbm, 0) / data.length,
-    avgSNR: data.reduce((a, d) => a + d.snr_db, 0) / data.length,
-    totalReadings: data.length,
-    duration: Math.max(...data.map(d => d.time_recv_s)),
-  };
-}
+// Primary telemetry data - real antenna data
+export const primaryTelemetryData: PrimaryTelemetryRow[] = [
+  {time_recv_s:0,time_send_ms:5146,V_car_last:48.60,V_car_avg:48.76,V_car_min:48.60,V_car_max:48.92,V_esp32_last:2.113,RAW:2635,I_last:-0.14,I_avg:1.43,I_min:-0.14,I_max:3.00,I_raw:1709,ax_last:-0.086,ay_last:0.979,az_last:0.129,a_tot_last:0.992,ax_avg:-0.085,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:1,time_send_ms:6146,V_car_last:48.94,V_car_avg:49.00,V_car_min:48.94,V_car_max:49.06,V_esp32_last:2.128,RAW:2642,I_last:2.54,I_avg:0.59,I_min:-1.36,I_max:2.54,I_raw:1630,ax_last:-0.084,ay_last:0.980,az_last:0.132,a_tot_last:0.992,ax_avg:-0.085,rssi_dbm:-45.00,snr_db:12.25},
+  {time_recv_s:2,time_send_ms:7146,V_car_last:48.62,V_car_avg:48.74,V_car_min:48.62,V_car_max:48.85,V_esp32_last:2.114,RAW:2631,I_last:-0.75,I_avg:0.93,I_min:-0.75,I_max:2.62,I_raw:1676,ax_last:-0.084,ay_last:0.977,az_last:0.130,a_tot_last:0.989,ax_avg:-0.086,rssi_dbm:-45.00,snr_db:12.75},
+  {time_recv_s:3,time_send_ms:8146,V_car_last:48.92,V_car_avg:48.94,V_car_min:48.92,V_car_max:48.97,V_esp32_last:2.127,RAW:2623,I_last:-4.19,I_avg:-1.28,I_min:-4.19,I_max:1.62,I_raw:1703,ax_last:-0.087,ay_last:0.980,az_last:0.137,a_tot_last:0.993,ax_avg:-0.086,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:4,time_send_ms:9146,V_car_last:48.92,V_car_avg:48.82,V_car_min:48.71,V_car_max:48.92,V_esp32_last:2.127,RAW:2630,I_last:-1.59,I_avg:-0.98,I_min:-1.59,I_max:-0.36,I_raw:1722,ax_last:-0.089,ay_last:0.974,az_last:0.133,a_tot_last:0.987,ax_avg:-0.085,rssi_dbm:-44.00,snr_db:12.50},
+  {time_recv_s:5,time_send_ms:10146,V_car_last:48.88,V_car_avg:48.81,V_car_min:48.74,V_car_max:48.88,V_esp32_last:2.125,RAW:2631,I_last:-0.98,I_avg:1.39,I_min:-0.98,I_max:3.76,I_raw:1694,ax_last:-0.085,ay_last:0.979,az_last:0.135,a_tot_last:0.992,ax_avg:-0.086,rssi_dbm:-45.00,snr_db:12.75},
+  {time_recv_s:6,time_send_ms:11146,V_car_last:48.58,V_car_avg:48.75,V_car_min:48.58,V_car_max:48.92,V_esp32_last:2.112,RAW:2651,I_last:-1.43,I_avg:-1.01,I_min:-1.43,I_max:-0.59,I_raw:1679,ax_last:-0.084,ay_last:0.976,az_last:0.137,a_tot_last:0.990,ax_avg:-0.084,rssi_dbm:-45.00,snr_db:13.00},
+  {time_recv_s:7,time_send_ms:12146,V_car_last:48.58,V_car_avg:48.82,V_car_min:48.58,V_car_max:49.06,V_esp32_last:2.112,RAW:2649,I_last:0.25,I_avg:0.59,I_min:0.25,I_max:0.93,I_raw:1633,ax_last:-0.085,ay_last:0.978,az_last:0.132,a_tot_last:0.990,ax_avg:-0.083,rssi_dbm:-45.00,snr_db:12.25},
+  {time_recv_s:8,time_send_ms:13146,V_car_last:48.85,V_car_avg:48.85,V_car_min:48.85,V_car_max:48.85,V_esp32_last:2.124,RAW:2625,I_last:0.09,I_avg:0.82,I_min:0.09,I_max:1.55,I_raw:1749,ax_last:-0.087,ay_last:0.978,az_last:0.133,a_tot_last:0.991,ax_avg:-0.087,rssi_dbm:-45.00,snr_db:12.75},
+  {time_recv_s:9,time_send_ms:14146,V_car_last:48.60,V_car_avg:48.51,V_car_min:48.42,V_car_max:48.60,V_esp32_last:2.113,RAW:2630,I_last:-2.28,I_avg:-1.93,I_min:-2.28,I_max:-1.59,I_raw:1699,ax_last:-0.086,ay_last:0.976,az_last:0.132,a_tot_last:0.989,ax_avg:-0.087,rssi_dbm:-46.00,snr_db:13.25},
+  {time_recv_s:10,time_send_ms:15146,V_car_last:48.83,V_car_avg:48.82,V_car_min:48.81,V_car_max:48.83,V_esp32_last:2.123,RAW:2623,I_last:0.63,I_avg:0.82,I_min:0.63,I_max:1.01,I_raw:1712,ax_last:-0.083,ay_last:0.979,az_last:0.133,a_tot_last:0.992,ax_avg:-0.085,rssi_dbm:-47.00,snr_db:11.50},
+  {time_recv_s:11,time_send_ms:16146,V_car_last:48.58,V_car_avg:48.71,V_car_min:48.58,V_car_max:48.85,V_esp32_last:2.112,RAW:2631,I_last:-0.29,I_avg:1.55,I_min:-0.29,I_max:3.38,I_raw:1725,ax_last:-0.085,ay_last:0.972,az_last:0.133,a_tot_last:0.985,ax_avg:-0.085,rssi_dbm:-43.00,snr_db:12.25},
+  {time_recv_s:12,time_send_ms:17146,V_car_last:48.90,V_car_avg:48.90,V_car_min:48.90,V_car_max:48.90,V_esp32_last:2.126,RAW:2640,I_last:0.86,I_avg:1.74,I_min:0.86,I_max:2.62,I_raw:1723,ax_last:-0.090,ay_last:0.977,az_last:0.134,a_tot_last:0.990,ax_avg:-0.086,rssi_dbm:-42.00,snr_db:11.50},
+  {time_recv_s:13,time_send_ms:18146,V_car_last:48.35,V_car_avg:48.43,V_car_min:48.35,V_car_max:48.51,V_esp32_last:2.102,RAW:2635,I_last:3.15,I_avg:1.85,I_min:0.55,I_max:3.15,I_raw:1666,ax_last:-0.081,ay_last:0.969,az_last:0.142,a_tot_last:0.982,ax_avg:-0.082,rssi_dbm:-43.00,snr_db:12.25},
+  {time_recv_s:14,time_send_ms:19146,V_car_last:48.71,V_car_avg:48.52,V_car_min:48.32,V_car_max:48.71,V_esp32_last:2.118,RAW:2617,I_last:1.62,I_avg:2.12,I_min:1.62,I_max:2.62,I_raw:1677,ax_last:-0.091,ay_last:1.003,az_last:0.128,a_tot_last:1.016,ax_avg:-0.095,rssi_dbm:-44.00,snr_db:13.00},
+  {time_recv_s:15,time_send_ms:20146,V_car_last:48.62,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.114,RAW:2625,I_last:-0.67,I_avg:1.47,I_min:-0.67,I_max:3.61,I_raw:1644,ax_last:-0.094,ay_last:0.992,az_last:0.138,a_tot_last:1.006,ax_avg:-0.097,rssi_dbm:-44.00,snr_db:12.25},
+  {time_recv_s:16,time_send_ms:21146,V_car_last:48.67,V_car_avg:48.91,V_car_min:48.67,V_car_max:49.15,V_esp32_last:2.116,RAW:2626,I_last:0.55,I_avg:-1.74,I_min:-4.03,I_max:0.55,I_raw:1685,ax_last:-0.092,ay_last:0.994,az_last:0.131,a_tot_last:1.007,ax_avg:-0.087,rssi_dbm:-43.00,snr_db:11.75},
+  {time_recv_s:17,time_send_ms:22146,V_car_last:48.58,V_car_avg:48.58,V_car_min:48.58,V_car_max:48.58,V_esp32_last:2.112,RAW:2624,I_last:-0.21,I_avg:0.21,I_min:-0.21,I_max:0.63,I_raw:1696,ax_last:-0.072,ay_last:0.976,az_last:0.126,a_tot_last:0.987,ax_avg:-0.075,rssi_dbm:-45.00,snr_db:11.75},
+  {time_recv_s:18,time_send_ms:23146,V_car_last:48.67,V_car_avg:48.56,V_car_min:48.46,V_car_max:48.67,V_esp32_last:2.116,RAW:2630,I_last:1.93,I_avg:0.78,I_min:-0.36,I_max:1.93,I_raw:1650,ax_last:-0.085,ay_last:0.965,az_last:0.125,a_tot_last:0.977,ax_avg:-0.088,rssi_dbm:-44.00,snr_db:12.75},
+  {time_recv_s:19,time_send_ms:24146,V_car_last:48.85,V_car_avg:48.59,V_car_min:48.32,V_car_max:48.85,V_esp32_last:2.124,RAW:2634,I_last:-1.74,I_avg:-0.86,I_min:-1.74,I_max:0.02,I_raw:1705,ax_last:-0.084,ay_last:0.974,az_last:0.127,a_tot_last:0.986,ax_avg:-0.085,rssi_dbm:-44.00,snr_db:11.50},
+  {time_recv_s:20,time_send_ms:25146,V_car_last:48.62,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.114,RAW:2634,I_last:-1.74,I_avg:-1.09,I_min:-1.74,I_max:-0.44,I_raw:1723,ax_last:-0.092,ay_last:1.019,az_last:0.126,a_tot_last:1.031,ax_avg:-0.091,rssi_dbm:-43.00,snr_db:12.50},
+  {time_recv_s:21,time_send_ms:26146,V_car_last:48.74,V_car_avg:48.70,V_car_min:48.67,V_car_max:48.74,V_esp32_last:2.119,RAW:2626,I_last:-2.12,I_avg:-2.35,I_min:-2.58,I_max:-2.12,I_raw:1665,ax_last:-0.095,ay_last:0.983,az_last:0.143,a_tot_last:0.998,ax_avg:-0.086,rssi_dbm:-43.00,snr_db:12.75},
+  {time_recv_s:22,time_send_ms:27146,V_car_last:48.58,V_car_avg:48.61,V_car_min:48.58,V_car_max:48.65,V_esp32_last:2.112,RAW:2625,I_last:0.09,I_avg:-0.21,I_min:-0.52,I_max:0.09,I_raw:1665,ax_last:-0.089,ay_last:0.981,az_last:0.136,a_tot_last:0.994,ax_avg:-0.084,rssi_dbm:-45.00,snr_db:12.00},
+  {time_recv_s:23,time_send_ms:28146,V_car_last:48.67,V_car_avg:48.55,V_car_min:48.44,V_car_max:48.67,V_esp32_last:2.116,RAW:2640,I_last:1.47,I_avg:0.90,I_min:0.32,I_max:1.47,I_raw:1684,ax_last:-0.092,ay_last:0.982,az_last:0.135,a_tot_last:0.995,ax_avg:-0.092,rssi_dbm:-45.00,snr_db:12.00},
+  {time_recv_s:24,time_send_ms:29146,V_car_last:48.83,V_car_avg:48.78,V_car_min:48.74,V_car_max:48.83,V_esp32_last:2.123,RAW:2629,I_last:0.32,I_avg:-1.32,I_min:-2.96,I_max:0.32,I_raw:1698,ax_last:-0.064,ay_last:0.973,az_last:0.113,a_tot_last:0.982,ax_avg:-0.082,rssi_dbm:-47.00,snr_db:11.75},
+  {time_recv_s:25,time_send_ms:30146,V_car_last:48.76,V_car_avg:48.70,V_car_min:48.65,V_car_max:48.76,V_esp32_last:2.120,RAW:2615,I_last:-2.35,I_avg:-1.24,I_min:-2.35,I_max:-0.14,I_raw:1674,ax_last:-0.097,ay_last:0.968,az_last:0.156,a_tot_last:0.985,ax_avg:-0.092,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:26,time_send_ms:31146,V_car_last:48.69,V_car_avg:48.70,V_car_min:48.69,V_car_max:48.71,V_esp32_last:2.117,RAW:2640,I_last:-1.59,I_avg:-1.97,I_min:-2.35,I_max:-1.59,I_raw:1699,ax_last:-0.075,ay_last:0.976,az_last:0.122,a_tot_last:0.987,ax_avg:-0.082,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:27,time_send_ms:32146,V_car_last:48.78,V_car_avg:48.79,V_car_min:48.78,V_car_max:48.81,V_esp32_last:2.121,RAW:2624,I_last:-0.06,I_avg:-0.06,I_min:-0.06,I_max:-0.06,I_raw:1713,ax_last:-0.082,ay_last:0.982,az_last:0.138,a_tot_last:0.995,ax_avg:-0.083,rssi_dbm:-46.00,snr_db:12.25},
+  {time_recv_s:28,time_send_ms:33146,V_car_last:48.65,V_car_avg:48.78,V_car_min:48.65,V_car_max:48.92,V_esp32_last:2.115,RAW:2626,I_last:4.30,I_avg:1.51,I_min:-1.28,I_max:4.30,I_raw:1663,ax_last:-0.087,ay_last:1.003,az_last:0.139,a_tot_last:1.016,ax_avg:-0.082,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:29,time_send_ms:34146,V_car_last:48.51,V_car_avg:48.56,V_car_min:48.51,V_car_max:48.62,V_esp32_last:2.109,RAW:2614,I_last:1.62,I_avg:0.67,I_min:-0.29,I_max:1.62,I_raw:1687,ax_last:-0.086,ay_last:0.966,az_last:0.134,a_tot_last:0.979,ax_avg:-0.080,rssi_dbm:-50.00,snr_db:11.75},
+  {time_recv_s:30,time_send_ms:35146,V_car_last:48.44,V_car_avg:48.65,V_car_min:48.44,V_car_max:48.85,V_esp32_last:2.106,RAW:2623,I_last:-0.67,I_avg:-1.36,I_min:-2.05,I_max:-0.67,I_raw:1689,ax_last:-0.081,ay_last:0.982,az_last:0.137,a_tot_last:0.995,ax_avg:-0.081,rssi_dbm:-43.00,snr_db:12.50},
+  {time_recv_s:31,time_send_ms:36146,V_car_last:48.62,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.114,RAW:2634,I_last:-1.05,I_avg:-1.24,I_min:-1.43,I_max:-1.05,I_raw:1683,ax_last:-0.082,ay_last:0.974,az_last:0.131,a_tot_last:0.986,ax_avg:-0.086,rssi_dbm:-41.00,snr_db:12.75},
+  {time_recv_s:32,time_send_ms:37146,V_car_last:48.67,V_car_avg:48.54,V_car_min:48.42,V_car_max:48.67,V_esp32_last:2.116,RAW:2624,I_last:2.54,I_avg:1.51,I_min:0.48,I_max:2.54,I_raw:1623,ax_last:-0.089,ay_last:0.984,az_last:0.139,a_tot_last:0.998,ax_avg:-0.090,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:33,time_send_ms:38146,V_car_last:48.69,V_car_avg:48.63,V_car_min:48.58,V_car_max:48.69,V_esp32_last:2.117,RAW:2614,I_last:5.22,I_avg:2.50,I_min:-0.21,I_max:5.22,I_raw:1663,ax_last:-0.127,ay_last:1.006,az_last:0.148,a_tot_last:1.025,ax_avg:-0.103,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:34,time_send_ms:39146,V_car_last:48.62,V_car_avg:48.77,V_car_min:48.62,V_car_max:48.92,V_esp32_last:2.114,RAW:2631,I_last:1.55,I_avg:1.05,I_min:0.55,I_max:1.55,I_raw:1665,ax_last:-0.102,ay_last:0.955,az_last:0.126,a_tot_last:0.969,ax_avg:-0.122,rssi_dbm:-47.00,snr_db:11.75},
+  {time_recv_s:35,time_send_ms:40146,V_car_last:48.60,V_car_avg:48.66,V_car_min:48.60,V_car_max:48.71,V_esp32_last:2.113,RAW:2634,I_last:-0.36,I_avg:-0.94,I_min:-1.51,I_max:-0.36,I_raw:1751,ax_last:-0.059,ay_last:0.766,az_last:0.098,a_tot_last:0.774,ax_avg:-0.077,rssi_dbm:-46.00,snr_db:12.25},
+  {time_recv_s:36,time_send_ms:41146,V_car_last:48.74,V_car_avg:48.81,V_car_min:48.74,V_car_max:48.88,V_esp32_last:2.119,RAW:2635,I_last:1.70,I_avg:1.09,I_min:0.48,I_max:1.70,I_raw:1702,ax_last:0.147,ay_last:0.642,az_last:0.082,a_tot_last:0.663,ax_avg:0.063,rssi_dbm:-43.00,snr_db:12.00},
+  {time_recv_s:37,time_send_ms:42146,V_car_last:48.65,V_car_avg:48.69,V_car_min:48.65,V_car_max:48.74,V_esp32_last:2.115,RAW:2627,I_last:1.62,I_avg:1.47,I_min:1.32,I_max:1.62,I_raw:1677,ax_last:-0.102,ay_last:0.840,az_last:0.136,a_tot_last:0.857,ax_avg:-0.151,rssi_dbm:-44.00,snr_db:12.00},
+  {time_recv_s:38,time_send_ms:43146,V_car_last:48.74,V_car_avg:48.65,V_car_min:48.55,V_car_max:48.74,V_esp32_last:2.119,RAW:2625,I_last:0.40,I_avg:0.02,I_min:-0.36,I_max:0.40,I_raw:1703,ax_last:-0.103,ay_last:1.042,az_last:0.138,a_tot_last:1.056,ax_avg:-0.111,rssi_dbm:-44.00,snr_db:12.00},
+  {time_recv_s:39,time_send_ms:44146,V_car_last:48.62,V_car_avg:48.74,V_car_min:48.62,V_car_max:48.85,V_esp32_last:2.114,RAW:2636,I_last:-0.21,I_avg:-1.24,I_min:-2.28,I_max:-0.21,I_raw:1697,ax_last:-0.095,ay_last:0.989,az_last:0.158,a_tot_last:1.006,ax_avg:-0.104,rssi_dbm:-44.00,snr_db:12.00},
+  {time_recv_s:40,time_send_ms:45146,V_car_last:48.62,V_car_avg:48.62,V_car_min:48.62,V_car_max:48.62,V_esp32_last:2.114,RAW:2627,I_last:3.08,I_avg:1.43,I_min:-0.21,I_max:3.08,I_raw:1713,ax_last:-0.086,ay_last:0.957,az_last:0.168,a_tot_last:0.975,ax_avg:-0.090,rssi_dbm:-44.00,snr_db:12.25},
+  {time_recv_s:41,time_send_ms:46146,V_car_last:48.76,V_car_avg:48.70,V_car_min:48.65,V_car_max:48.76,V_esp32_last:2.120,RAW:2628,I_last:3.53,I_avg:2.23,I_min:0.93,I_max:3.53,I_raw:1683,ax_last:-0.107,ay_last:0.982,az_last:0.166,a_tot_last:1.001,ax_avg:-0.114,rssi_dbm:-42.00,snr_db:13.00},
+  {time_recv_s:42,time_send_ms:47146,V_car_last:48.67,V_car_avg:48.70,V_car_min:48.67,V_car_max:48.74,V_esp32_last:2.116,RAW:2624,I_last:0.55,I_avg:0.59,I_min:0.55,I_max:0.63,I_raw:1694,ax_last:-0.062,ay_last:0.957,az_last:0.147,a_tot_last:0.970,ax_avg:-0.065,rssi_dbm:-44.00,snr_db:12.75},
+  {time_recv_s:43,time_send_ms:48146,V_car_last:48.65,V_car_avg:48.62,V_car_min:48.60,V_car_max:48.65,V_esp32_last:2.115,RAW:2627,I_last:0.09,I_avg:0.59,I_min:0.09,I_max:1.09,I_raw:1680,ax_last:-0.195,ay_last:0.977,az_last:0.148,a_tot_last:1.007,ax_avg:-0.168,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:44,time_send_ms:49146,V_car_last:48.97,V_car_avg:48.70,V_car_min:48.44,V_car_max:48.97,V_esp32_last:2.129,RAW:2627,I_last:-3.04,I_avg:-2.66,I_min:-3.04,I_max:-2.28,I_raw:1680,ax_last:-0.082,ay_last:0.983,az_last:0.131,a_tot_last:0.995,ax_avg:-0.087,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:45,time_send_ms:50146,V_car_last:48.62,V_car_avg:48.61,V_car_min:48.60,V_car_max:48.62,V_esp32_last:2.114,RAW:2618,I_last:2.85,I_avg:0.97,I_min:-0.90,I_max:2.85,I_raw:1680,ax_last:-0.098,ay_last:1.009,az_last:0.147,a_tot_last:1.024,ax_avg:-0.121,rssi_dbm:-48.00,snr_db:13.25},
+  {time_recv_s:46,time_send_ms:51146,V_car_last:48.62,V_car_avg:48.61,V_car_min:48.60,V_car_max:48.62,V_esp32_last:2.114,RAW:2631,I_last:-3.19,I_avg:-0.25,I_min:-3.19,I_max:2.69,I_raw:1648,ax_last:-0.097,ay_last:0.980,az_last:0.126,a_tot_last:0.993,ax_avg:-0.090,rssi_dbm:-47.00,snr_db:12.75},
+  {time_recv_s:47,time_send_ms:52146,V_car_last:48.67,V_car_avg:48.65,V_car_min:48.62,V_car_max:48.67,V_esp32_last:2.116,RAW:2624,I_last:-2.66,I_avg:-0.21,I_min:-2.66,I_max:2.23,I_raw:1635,ax_last:-0.106,ay_last:0.980,az_last:0.128,a_tot_last:0.995,ax_avg:-0.115,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:48,time_send_ms:53146,V_car_last:48.62,V_car_avg:48.62,V_car_min:48.62,V_car_max:48.62,V_esp32_last:2.114,RAW:2625,I_last:-4.19,I_avg:-1.66,I_min:-4.19,I_max:0.86,I_raw:1726,ax_last:-0.106,ay_last:0.981,az_last:0.120,a_tot_last:0.994,ax_avg:-0.101,rssi_dbm:-45.00,snr_db:12.75},
+  {time_recv_s:49,time_send_ms:54146,V_car_last:48.76,V_car_avg:48.67,V_car_min:48.58,V_car_max:48.76,V_esp32_last:2.120,RAW:2624,I_last:3.46,I_avg:2.12,I_min:0.78,I_max:3.46,I_raw:1686,ax_last:-0.088,ay_last:0.977,az_last:0.131,a_tot_last:0.990,ax_avg:-0.090,rssi_dbm:-44.00,snr_db:12.25},
+  {time_recv_s:50,time_send_ms:55146,V_car_last:48.46,V_car_avg:48.60,V_car_min:48.46,V_car_max:48.74,V_esp32_last:2.107,RAW:2619,I_last:1.24,I_avg:-1.51,I_min:-4.26,I_max:1.24,I_raw:1662,ax_last:-0.088,ay_last:0.981,az_last:0.134,a_tot_last:0.994,ax_avg:-0.086,rssi_dbm:-43.00,snr_db:12.25},
+  {time_recv_s:51,time_send_ms:56146,V_car_last:48.58,V_car_avg:48.70,V_car_min:48.58,V_car_max:48.83,V_esp32_last:2.112,RAW:2618,I_last:-1.28,I_avg:-1.28,I_min:-1.28,I_max:-1.28,I_raw:1661,ax_last:-0.066,ay_last:0.985,az_last:0.126,a_tot_last:0.995,ax_avg:-0.066,rssi_dbm:-44.00,snr_db:12.25},
+  {time_recv_s:52,time_send_ms:57146,V_car_last:48.42,V_car_avg:48.63,V_car_min:48.42,V_car_max:48.85,V_esp32_last:2.105,RAW:2635,I_last:1.93,I_avg:-0.02,I_min:-1.97,I_max:1.93,I_raw:1680,ax_last:-0.090,ay_last:0.980,az_last:0.125,a_tot_last:0.992,ax_avg:-0.089,rssi_dbm:-43.00,snr_db:12.25},
+  {time_recv_s:53,time_send_ms:58146,V_car_last:48.71,V_car_avg:48.74,V_car_min:48.71,V_car_max:48.76,V_esp32_last:2.118,RAW:2615,I_last:-1.36,I_avg:1.13,I_min:-1.36,I_max:3.61,I_raw:1699,ax_last:-0.078,ay_last:0.972,az_last:0.121,a_tot_last:0.983,ax_avg:-0.071,rssi_dbm:-44.00,snr_db:12.50},
+  {time_recv_s:54,time_send_ms:59146,V_car_last:48.67,V_car_avg:48.66,V_car_min:48.65,V_car_max:48.67,V_esp32_last:2.116,RAW:2623,I_last:-2.89,I_avg:-0.56,I_min:-2.89,I_max:1.78,I_raw:1680,ax_last:-0.085,ay_last:0.979,az_last:0.133,a_tot_last:0.992,ax_avg:-0.080,rssi_dbm:-44.00,snr_db:12.25},
+  {time_recv_s:55,time_send_ms:60146,V_car_last:48.53,V_car_avg:48.56,V_car_min:48.53,V_car_max:48.60,V_esp32_last:2.110,RAW:2619,I_last:2.85,I_avg:2.54,I_min:2.23,I_max:2.85,I_raw:1686,ax_last:-0.083,ay_last:0.981,az_last:0.126,a_tot_last:0.993,ax_avg:-0.077,rssi_dbm:-45.00,snr_db:12.00},
+  {time_recv_s:56,time_send_ms:61146,V_car_last:48.48,V_car_avg:48.60,V_car_min:48.48,V_car_max:48.71,V_esp32_last:2.108,RAW:2627,I_last:2.46,I_avg:0.29,I_min:-1.89,I_max:2.46,I_raw:1674,ax_last:-0.078,ay_last:0.980,az_last:0.126,a_tot_last:0.991,ax_avg:-0.077,rssi_dbm:-45.00,snr_db:12.25},
+  {time_recv_s:57,time_send_ms:62146,V_car_last:48.65,V_car_avg:48.61,V_car_min:48.58,V_car_max:48.65,V_esp32_last:2.115,RAW:2611,I_last:-1.43,I_avg:0.25,I_min:-1.43,I_max:1.93,I_raw:1680,ax_last:-0.089,ay_last:0.979,az_last:0.120,a_tot_last:0.990,ax_avg:-0.084,rssi_dbm:-45.00,snr_db:11.75},
+  {time_recv_s:58,time_send_ms:63146,V_car_last:48.69,V_car_avg:48.71,V_car_min:48.69,V_car_max:48.74,V_esp32_last:2.117,RAW:2627,I_last:3.38,I_avg:2.85,I_min:2.31,I_max:3.38,I_raw:1690,ax_last:-0.074,ay_last:0.987,az_last:0.131,a_tot_last:0.998,ax_avg:-0.074,rssi_dbm:-44.00,snr_db:12.00},
+  {time_recv_s:59,time_send_ms:64146,V_car_last:48.55,V_car_avg:48.61,V_car_min:48.55,V_car_max:48.67,V_esp32_last:2.111,RAW:2624,I_last:1.01,I_avg:2.12,I_min:1.01,I_max:3.23,I_raw:1709,ax_last:-0.080,ay_last:0.983,az_last:0.117,a_tot_last:0.993,ax_avg:-0.079,rssi_dbm:-44.00,snr_db:12.50},
+  {time_recv_s:60,time_send_ms:65146,V_car_last:48.60,V_car_avg:48.63,V_car_min:48.60,V_car_max:48.67,V_esp32_last:2.113,RAW:2622,I_last:2.31,I_avg:0.48,I_min:-1.36,I_max:2.31,I_raw:1742,ax_last:-0.070,ay_last:0.982,az_last:0.127,a_tot_last:0.992,ax_avg:-0.068,rssi_dbm:-44.00,snr_db:12.25},
+  {time_recv_s:61,time_send_ms:66146,V_car_last:48.39,V_car_avg:48.58,V_car_min:48.39,V_car_max:48.76,V_esp32_last:2.104,RAW:2626,I_last:1.62,I_avg:1.70,I_min:1.62,I_max:1.78,I_raw:1574,ax_last:-0.079,ay_last:0.983,az_last:0.124,a_tot_last:0.994,ax_avg:-0.081,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:62,time_send_ms:67146,V_car_last:48.62,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.114,RAW:2624,I_last:1.85,I_avg:0.17,I_min:-1.51,I_max:1.85,I_raw:1648,ax_last:-0.081,ay_last:0.982,az_last:0.123,a_tot_last:0.993,ax_avg:-0.076,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:63,time_send_ms:68146,V_car_last:48.65,V_car_avg:48.67,V_car_min:48.65,V_car_max:48.69,V_esp32_last:2.115,RAW:2613,I_last:-2.35,I_avg:-0.86,I_min:-2.35,I_max:0.63,I_raw:1737,ax_last:-0.084,ay_last:0.983,az_last:0.119,a_tot_last:0.993,ax_avg:-0.085,rssi_dbm:-45.00,snr_db:12.75},
+  {time_recv_s:64,time_send_ms:69146,V_car_last:48.62,V_car_avg:48.65,V_car_min:48.62,V_car_max:48.67,V_esp32_last:2.114,RAW:2618,I_last:0.71,I_avg:2.39,I_min:0.71,I_max:4.07,I_raw:1697,ax_last:-0.068,ay_last:0.973,az_last:0.128,a_tot_last:0.984,ax_avg:-0.068,rssi_dbm:-44.00,snr_db:12.00},
+  {time_recv_s:65,time_send_ms:70146,V_car_last:48.67,V_car_avg:48.75,V_car_min:48.67,V_car_max:48.83,V_esp32_last:2.116,RAW:2625,I_last:-0.67,I_avg:-1.01,I_min:-1.36,I_max:-0.67,I_raw:1689,ax_last:-0.074,ay_last:0.980,az_last:0.132,a_tot_last:0.991,ax_avg:-0.077,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:66,time_send_ms:71146,V_car_last:48.65,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.115,RAW:2630,I_last:-2.12,I_avg:-0.56,I_min:-2.12,I_max:1.01,I_raw:1664,ax_last:-0.081,ay_last:0.983,az_last:0.128,a_tot_last:0.995,ax_avg:-0.081,rssi_dbm:-45.00,snr_db:12.75},
+  {time_recv_s:67,time_send_ms:72146,V_car_last:48.65,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.115,RAW:2624,I_last:-0.67,I_avg:-1.66,I_min:-2.66,I_max:-0.67,I_raw:1675,ax_last:-0.078,ay_last:0.976,az_last:0.125,a_tot_last:0.987,ax_avg:-0.080,rssi_dbm:-46.00,snr_db:13.50},
+  {time_recv_s:68,time_send_ms:73146,V_car_last:48.78,V_car_avg:48.70,V_car_min:48.62,V_car_max:48.78,V_esp32_last:2.121,RAW:2625,I_last:0.32,I_avg:0.48,I_min:0.32,I_max:0.63,I_raw:1723,ax_last:-0.081,ay_last:0.976,az_last:0.128,a_tot_last:0.988,ax_avg:-0.078,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:69,time_send_ms:74146,V_car_last:48.60,V_car_avg:48.61,V_car_min:48.60,V_car_max:48.62,V_esp32_last:2.113,RAW:2633,I_last:-0.14,I_avg:0.90,I_min:-0.14,I_max:1.93,I_raw:1664,ax_last:-0.079,ay_last:0.979,az_last:0.133,a_tot_last:0.991,ax_avg:-0.080,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:70,time_send_ms:75146,V_car_last:48.67,V_car_avg:48.67,V_car_min:48.67,V_car_max:48.67,V_esp32_last:2.116,RAW:2626,I_last:0.93,I_avg:0.40,I_min:-0.14,I_max:0.93,I_raw:1664,ax_last:-0.075,ay_last:0.973,az_last:0.120,a_tot_last:0.983,ax_avg:-0.081,rssi_dbm:-45.00,snr_db:12.00},
+  {time_recv_s:71,time_send_ms:76146,V_car_last:48.62,V_car_avg:48.65,V_car_min:48.62,V_car_max:48.67,V_esp32_last:2.114,RAW:2620,I_last:2.08,I_avg:0.09,I_min:-1.89,I_max:2.08,I_raw:1674,ax_last:-0.085,ay_last:0.970,az_last:0.127,a_tot_last:0.982,ax_avg:-0.082,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:72,time_send_ms:77146,V_car_last:48.71,V_car_avg:48.67,V_car_min:48.62,V_car_max:48.71,V_esp32_last:2.118,RAW:2622,I_last:0.86,I_avg:-0.71,I_min:-2.28,I_max:0.86,I_raw:1674,ax_last:-0.082,ay_last:0.977,az_last:0.129,a_tot_last:0.988,ax_avg:-0.085,rssi_dbm:-44.00,snr_db:12.00},
+  {time_recv_s:73,time_send_ms:78146,V_car_last:48.74,V_car_avg:48.70,V_car_min:48.67,V_car_max:48.74,V_esp32_last:2.119,RAW:2623,I_last:0.63,I_avg:-0.33,I_min:-1.28,I_max:0.63,I_raw:1635,ax_last:-0.075,ay_last:0.980,az_last:0.131,a_tot_last:0.992,ax_avg:-0.074,rssi_dbm:-43.00,snr_db:12.00},
+  {time_recv_s:74,time_send_ms:79146,V_car_last:48.62,V_car_avg:48.62,V_car_min:48.62,V_car_max:48.62,V_esp32_last:2.114,RAW:2626,I_last:0.93,I_avg:-0.14,I_min:-1.21,I_max:0.93,I_raw:1637,ax_last:-0.085,ay_last:0.983,az_last:0.125,a_tot_last:0.995,ax_avg:-0.084,rssi_dbm:-43.00,snr_db:12.00},
+  {time_recv_s:75,time_send_ms:80146,V_car_last:48.65,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.115,RAW:2613,I_last:1.55,I_avg:-0.52,I_min:-2.58,I_max:1.55,I_raw:1710,ax_last:-0.085,ay_last:0.978,az_last:0.122,a_tot_last:0.989,ax_avg:-0.081,rssi_dbm:-46.00,snr_db:12.00},
+  {time_recv_s:76,time_send_ms:81146,V_car_last:48.67,V_car_avg:48.67,V_car_min:48.67,V_car_max:48.67,V_esp32_last:2.116,RAW:2630,I_last:0.32,I_avg:1.70,I_min:0.32,I_max:3.08,I_raw:1695,ax_last:-0.083,ay_last:0.977,az_last:0.127,a_tot_last:0.989,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:13.00},
+  {time_recv_s:77,time_send_ms:82146,V_car_last:48.62,V_car_avg:48.69,V_car_min:48.62,V_car_max:48.76,V_esp32_last:2.114,RAW:2623,I_last:-4.19,I_avg:-1.47,I_min:-4.19,I_max:1.24,I_raw:1632,ax_last:-0.080,ay_last:0.977,az_last:0.130,a_tot_last:0.989,ax_avg:-0.078,rssi_dbm:-46.00,snr_db:13.00},
+  {time_recv_s:78,time_send_ms:83146,V_car_last:48.53,V_car_avg:48.58,V_car_min:48.53,V_car_max:48.62,V_esp32_last:2.110,RAW:2629,I_last:1.32,I_avg:-0.44,I_min:-2.20,I_max:1.32,I_raw:1709,ax_last:-0.082,ay_last:0.979,az_last:0.127,a_tot_last:0.991,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:79,time_send_ms:84146,V_car_last:48.74,V_car_avg:48.67,V_car_min:48.60,V_car_max:48.74,V_esp32_last:2.119,RAW:2631,I_last:-0.06,I_avg:-0.98,I_min:-1.89,I_max:-0.06,I_raw:1711,ax_last:-0.079,ay_last:0.981,az_last:0.128,a_tot_last:0.993,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:80,time_send_ms:85146,V_car_last:48.67,V_car_avg:48.68,V_car_min:48.67,V_car_max:48.69,V_esp32_last:2.116,RAW:2626,I_last:-1.28,I_avg:-0.29,I_min:-1.28,I_max:0.71,I_raw:1709,ax_last:-0.084,ay_last:0.977,az_last:0.130,a_tot_last:0.989,ax_avg:-0.084,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:81,time_send_ms:86146,V_car_last:48.60,V_car_avg:48.63,V_car_min:48.60,V_car_max:48.67,V_esp32_last:2.113,RAW:2624,I_last:-1.21,I_avg:-0.63,I_min:-1.21,I_max:-0.06,I_raw:1695,ax_last:-0.077,ay_last:0.981,az_last:0.124,a_tot_last:0.992,ax_avg:-0.082,rssi_dbm:-47.00,snr_db:12.75},
+  {time_recv_s:82,time_send_ms:87146,V_car_last:48.69,V_car_avg:48.66,V_car_min:48.62,V_car_max:48.69,V_esp32_last:2.117,RAW:2615,I_last:-3.58,I_avg:-0.36,I_min:-3.58,I_max:2.85,I_raw:1661,ax_last:-0.071,ay_last:0.983,az_last:0.126,a_tot_last:0.994,ax_avg:-0.072,rssi_dbm:-45.00,snr_db:12.50},
+  {time_recv_s:83,time_send_ms:88146,V_car_last:48.62,V_car_avg:48.62,V_car_min:48.62,V_car_max:48.62,V_esp32_last:2.114,RAW:2624,I_last:2.92,I_avg:2.50,I_min:2.08,I_max:2.92,I_raw:1675,ax_last:-0.094,ay_last:0.987,az_last:0.125,a_tot_last:0.999,ax_avg:-0.091,rssi_dbm:-49.00,snr_db:12.50},
+  {time_recv_s:84,time_send_ms:89146,V_car_last:48.58,V_car_avg:48.55,V_car_min:48.53,V_car_max:48.58,V_esp32_last:2.112,RAW:2618,I_last:1.32,I_avg:-1.89,I_min:-5.10,I_max:1.32,I_raw:1678,ax_last:-0.083,ay_last:0.977,az_last:0.129,a_tot_last:0.989,ax_avg:-0.090,rssi_dbm:-46.00,snr_db:12.00},
+  {time_recv_s:85,time_send_ms:90146,V_car_last:48.76,V_car_avg:48.69,V_car_min:48.62,V_car_max:48.76,V_esp32_last:2.120,RAW:2623,I_last:-4.26,I_avg:-1.24,I_min:-4.26,I_max:1.78,I_raw:1685,ax_last:-0.080,ay_last:0.973,az_last:0.129,a_tot_last:0.985,ax_avg:-0.082,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:86,time_send_ms:91146,V_car_last:48.65,V_car_avg:48.74,V_car_min:48.65,V_car_max:48.83,V_esp32_last:2.115,RAW:2626,I_last:1.93,I_avg:1.28,I_min:0.63,I_max:1.93,I_raw:1673,ax_last:-0.075,ay_last:0.979,az_last:0.130,a_tot_last:0.990,ax_avg:-0.072,rssi_dbm:-46.00,snr_db:12.00},
+  {time_recv_s:87,time_send_ms:92146,V_car_last:48.67,V_car_avg:48.54,V_car_min:48.42,V_car_max:48.67,V_esp32_last:2.116,RAW:2615,I_last:-1.51,I_avg:-1.24,I_min:-1.51,I_max:-0.98,I_raw:1677,ax_last:-0.073,ay_last:0.977,az_last:0.127,a_tot_last:0.988,ax_avg:-0.076,rssi_dbm:-46.00,snr_db:13.25},
+  {time_recv_s:88,time_send_ms:93146,V_car_last:48.67,V_car_avg:48.65,V_car_min:48.62,V_car_max:48.67,V_esp32_last:2.116,RAW:2624,I_last:-3.35,I_avg:-1.36,I_min:-3.35,I_max:0.63,I_raw:1670,ax_last:-0.073,ay_last:0.992,az_last:0.122,a_tot_last:1.002,ax_avg:-0.075,rssi_dbm:-45.00,snr_db:13.00},
+  {time_recv_s:89,time_send_ms:94146,V_car_last:48.62,V_car_avg:48.66,V_car_min:48.62,V_car_max:48.69,V_esp32_last:2.114,RAW:2623,I_last:0.40,I_avg:-0.25,I_min:-0.90,I_max:0.40,I_raw:1744,ax_last:-0.083,ay_last:0.985,az_last:0.125,a_tot_last:0.996,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:12.25},
+  {time_recv_s:90,time_send_ms:95146,V_car_last:48.58,V_car_avg:48.62,V_car_min:48.58,V_car_max:48.67,V_esp32_last:2.112,RAW:2626,I_last:1.32,I_avg:-0.40,I_min:-2.12,I_max:1.32,I_raw:1654,ax_last:-0.079,ay_last:0.993,az_last:0.130,a_tot_last:1.004,ax_avg:-0.077,rssi_dbm:-46.00,snr_db:11.75},
+  {time_recv_s:91,time_send_ms:96146,V_car_last:48.48,V_car_avg:48.53,V_car_min:48.48,V_car_max:48.58,V_esp32_last:2.108,RAW:2624,I_last:-2.96,I_avg:-1.55,I_min:-2.96,I_max:-0.14,I_raw:1744,ax_last:-0.082,ay_last:0.981,az_last:0.130,a_tot_last:0.993,ax_avg:-0.082,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:92,time_send_ms:97146,V_car_last:48.53,V_car_avg:48.55,V_car_min:48.53,V_car_max:48.58,V_esp32_last:2.110,RAW:2629,I_last:-0.06,I_avg:1.74,I_min:-0.06,I_max:3.53,I_raw:1647,ax_last:-0.078,ay_last:0.978,az_last:0.127,a_tot_last:0.989,ax_avg:-0.077,rssi_dbm:-47.00,snr_db:12.00},
+  {time_recv_s:93,time_send_ms:98146,V_car_last:48.78,V_car_avg:48.59,V_car_min:48.39,V_car_max:48.78,V_esp32_last:2.121,RAW:2623,I_last:1.01,I_avg:0.93,I_min:0.86,I_max:1.01,I_raw:1661,ax_last:-0.080,ay_last:0.972,az_last:0.128,a_tot_last:0.984,ax_avg:-0.078,rssi_dbm:-46.00,snr_db:12.00},
+  {time_recv_s:94,time_send_ms:99146,V_car_last:48.62,V_car_avg:48.60,V_car_min:48.58,V_car_max:48.62,V_esp32_last:2.114,RAW:2618,I_last:2.39,I_avg:0.09,I_min:-2.20,I_max:2.39,I_raw:1673,ax_last:-0.073,ay_last:0.972,az_last:0.121,a_tot_last:0.982,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:12.25},
+  {time_recv_s:95,time_send_ms:100146,V_car_last:48.60,V_car_avg:48.61,V_car_min:48.60,V_car_max:48.62,V_esp32_last:2.113,RAW:2622,I_last:0.86,I_avg:1.78,I_min:0.86,I_max:2.69,I_raw:1680,ax_last:-0.082,ay_last:0.979,az_last:0.126,a_tot_last:0.991,ax_avg:-0.080,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:96,time_send_ms:101146,V_car_last:48.62,V_car_avg:48.59,V_car_min:48.55,V_car_max:48.62,V_esp32_last:2.114,RAW:2624,I_last:1.09,I_avg:0.71,I_min:0.32,I_max:1.09,I_raw:1674,ax_last:-0.076,ay_last:0.987,az_last:0.122,a_tot_last:0.997,ax_avg:-0.078,rssi_dbm:-46.00,snr_db:12.00},
+  {time_recv_s:97,time_send_ms:102146,V_car_last:48.46,V_car_avg:48.50,V_car_min:48.46,V_car_max:48.53,V_esp32_last:2.107,RAW:2620,I_last:0.86,I_avg:0.17,I_min:-0.52,I_max:0.86,I_raw:1681,ax_last:-0.076,ay_last:0.980,az_last:0.131,a_tot_last:0.992,ax_avg:-0.073,rssi_dbm:-45.00,snr_db:12.00},
+  {time_recv_s:98,time_send_ms:103146,V_car_last:48.48,V_car_avg:48.51,V_car_min:48.48,V_car_max:48.53,V_esp32_last:2.108,RAW:2618,I_last:-1.66,I_avg:-0.06,I_min:-1.66,I_max:1.55,I_raw:1663,ax_last:-0.076,ay_last:0.977,az_last:0.138,a_tot_last:0.990,ax_avg:-0.078,rssi_dbm:-46.00,snr_db:12.25},
+  {time_recv_s:99,time_send_ms:104146,V_car_last:48.37,V_car_avg:48.46,V_car_min:48.37,V_car_max:48.55,V_esp32_last:2.103,RAW:2616,I_last:2.23,I_avg:0.93,I_min:-0.36,I_max:2.23,I_raw:1691,ax_last:-0.079,ay_last:0.983,az_last:0.132,a_tot_last:0.995,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:13.00},
+  {time_recv_s:100,time_send_ms:105146,V_car_last:48.65,V_car_avg:48.63,V_car_min:48.62,V_car_max:48.65,V_esp32_last:2.115,RAW:2621,I_last:-2.28,I_avg:-1.93,I_min:-2.28,I_max:-1.59,I_raw:1694,ax_last:-0.084,ay_last:0.979,az_last:0.128,a_tot_last:0.991,ax_avg:-0.08,rssi_dbm:-46.00,snr_db:13.25},
+  {time_recv_s:101,time_send_ms:106146,V_car_last:48.46,V_car_avg:48.58,V_car_min:48.46,V_car_max:48.69,V_esp32_last:2.107,RAW:2615,I_last:-4.80,I_avg:-1.63,I_min:-4.80,I_max:1.55,I_raw:1616,ax_last:-0.079,ay_last:0.976,az_last:0.132,a_tot_last:0.988,ax_avg:-0.081,rssi_dbm:-46.00,snr_db:13.00},
+  {time_recv_s:102,time_send_ms:107146,V_car_last:48.42,V_car_avg:48.38,V_car_min:48.35,V_car_max:48.42,V_esp32_last:2.105,RAW:2618,I_last:-1.05,I_avg:-0.29,I_min:-1.05,I_max:0.48,I_raw:1659,ax_last:-0.079,ay_last:0.981,az_last:0.128,a_tot_last:0.993,ax_avg:-0.080,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:103,time_send_ms:108146,V_car_last:48.60,V_car_avg:48.59,V_car_min:48.58,V_car_max:48.60,V_esp32_last:2.113,RAW:2623,I_last:1.47,I_avg:0.71,I_min:-0.06,I_max:1.47,I_raw:1745,ax_last:-0.079,ay_last:0.977,az_last:0.133,a_tot_last:0.989,ax_avg:-0.079,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:104,time_send_ms:109146,V_car_last:48.51,V_car_avg:48.52,V_car_min:48.51,V_car_max:48.53,V_esp32_last:2.109,RAW:2627,I_last:-0.67,I_avg:-0.98,I_min:-1.28,I_max:-0.67,I_raw:1712,ax_last:-0.082,ay_last:0.978,az_last:0.131,a_tot_last:0.990,ax_avg:-0.08,rssi_dbm:-46.00,snr_db:13.25},
+  {time_recv_s:105,time_send_ms:110146,V_car_last:48.48,V_car_avg:48.46,V_car_min:48.44,V_car_max:48.48,V_esp32_last:2.108,RAW:2617,I_last:-0.36,I_avg:0.63,I_min:-0.36,I_max:1.62,I_raw:1694,ax_last:-0.082,ay_last:0.978,az_last:0.127,a_tot_last:0.990,ax_avg:-0.081,rssi_dbm:-46.00,snr_db:13.00},
+  {time_recv_s:106,time_send_ms:111146,V_car_last:48.58,V_car_avg:48.52,V_car_min:48.46,V_car_max:48.58,V_esp32_last:2.112,RAW:2615,I_last:-1.89,I_avg:-1.51,I_min:-1.89,I_max:-1.13,I_raw:1682,ax_last:-0.081,ay_last:0.981,az_last:0.131,a_tot_last:0.993,ax_avg:-0.07,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:107,time_send_ms:112146,V_car_last:48.58,V_car_avg:48.45,V_car_min:48.32,V_car_max:48.58,V_esp32_last:2.112,RAW:2626,I_last:-1.89,I_avg:-3.77,I_min:-5.64,I_max:-1.89,I_raw:1678,ax_last:-0.086,ay_last:0.977,az_last:0.130,a_tot_last:0.989,ax_avg:-0.08,rssi_dbm:-46.00,snr_db:12.50},
+  {time_recv_s:108,time_send_ms:113146,V_car_last:48.39,V_car_avg:48.36,V_car_min:48.32,V_car_max:48.39,V_esp32_last:2.104,RAW:2614,I_last:0.93,I_avg:0.09,I_min:-0.75,I_max:0.93,I_raw:1675,ax_last:-0.081,ay_last:0.978,az_last:0.131,a_tot_last:0.990,ax_avg:-0.081,rssi_dbm:-46.00,snr_db:13.00},
+  {time_recv_s:109,time_send_ms:114146,V_car_last:48.58,V_car_avg:48.61,V_car_min:48.58,V_car_max:48.65,V_esp32_last:2.112,RAW:2623,I_last:2.77,I_avg:2.81,I_min:2.77,I_max:2.85,I_raw:1727,ax_last:-0.077,ay_last:0.981,az_last:0.135,a_tot_last:0.993,ax_avg:-0.078,rssi_dbm:-46.00,snr_db:12.75},
+  {time_recv_s:110,time_send_ms:115146,V_car_last:48.60,V_car_avg:48.44,V_car_min:48.28,V_car_max:48.60,V_esp32_last:2.113,RAW:2622,I_last:0.32,I_avg:-0.63,I_min:-1.59,I_max:0.32,I_raw:1714,ax_last:-0.087,ay_last:0.980,az_last:0.128,a_tot_last:0.992,ax_avg:-0.083,rssi_dbm:-46.00,snr_db:12.25},
+  {time_recv_s:111,time_send_ms:116146,V_car_last:48.62,V_car_avg:48.53,V_car_min:48.44,V_car_max:48.62,V_esp32_last:2.114,RAW:2625,I_last:0.93,I_avg:2.27,I_min:0.93,I_max:3.61,I_raw:1729,ax_last:-0.066,ay_last:0.976,az_last:0.142,a_tot_last:0.989,ax_avg:-0.070,rssi_dbm:-47.00,snr_db:13.00},
+  {time_recv_s:112,time_send_ms:117146,V_car_last:48.37,V_car_avg:48.29,V_car_min:48.21,V_car_max:48.37,V_esp32_last:2.103,RAW:2602,I_last:-0.29,I_avg:0.67,I_min:-0.29,I_max:1.62,I_raw:1718,ax_last:-0.042,ay_last:0.987,az_last:0.137,a_tot_last:0.998,ax_avg:-0.053,rssi_dbm:-46.00,snr_db:11.75},
+  // === High-current event (battery under load) ===
+  {time_recv_s:113,time_send_ms:118146,V_car_last:45.86,V_car_avg:45.89,V_car_min:45.86,V_car_max:45.91,V_esp32_last:1.994,RAW:2463,I_last:19.36,I_avg:26.01,I_min:19.36,I_max:32.66,I_raw:2126,ax_last:-0.229,ay_last:1.294,az_last:0.129,a_tot_last:1.321,ax_avg:-0.49,rssi_dbm:-47.00,snr_db:13.25},
+  {time_recv_s:114,time_send_ms:119146,V_car_last:47.43,V_car_avg:47.62,V_car_min:47.43,V_car_max:47.82,V_esp32_last:2.062,RAW:2559,I_last:-0.06,I_avg:0.59,I_min:-0.06,I_max:1.24,I_raw:1694,ax_last:0.000,ay_last:0.905,az_last:0.145,a_tot_last:0.917,ax_avg:0.006,rssi_dbm:-49.00,snr_db:12.75},
+  {time_recv_s:115,time_send_ms:120146,V_car_last:47.86,V_car_avg:47.87,V_car_min:47.86,V_car_max:47.89,V_esp32_last:2.081,RAW:2559,I_last:-2.20,I_avg:-0.79,I_min:-2.20,I_max:0.63,I_raw:1674,ax_last:-0.049,ay_last:0.991,az_last:0.127,a_tot_last:1.000,ax_avg:-0.046,rssi_dbm:-49.00,snr_db:12.25},
+  {time_recv_s:116,time_send_ms:121146,V_car_last:47.91,V_car_avg:47.97,V_car_min:47.91,V_car_max:48.02,V_esp32_last:2.083,RAW:2599,I_last:3.30,I_avg:0.82,I_min:-1.66,I_max:3.30,I_raw:1639,ax_last:-0.077,ay_last:0.980,az_last:0.130,a_tot_last:0.992,ax_avg:-0.077,rssi_dbm:-49.00,snr_db:12.50},
+  {time_recv_s:117,time_send_ms:122146,V_car_last:48.16,V_car_avg:48.04,V_car_min:47.91,V_car_max:48.16,V_esp32_last:2.094,RAW:2599,I_last:-0.36,I_avg:-2.31,I_min:-4.26,I_max:-0.36,I_raw:1699,ax_last:-0.075,ay_last:0.976,az_last:0.130,a_tot_last:0.988,ax_avg:-0.07,rssi_dbm:-50.00,snr_db:13.25},
+  {time_recv_s:118,time_send_ms:123146,V_car_last:48.09,V_car_avg:48.13,V_car_min:48.09,V_car_max:48.16,V_esp32_last:2.091,RAW:2591,I_last:-2.96,I_avg:-1.05,I_min:-2.96,I_max:0.86,I_raw:1642,ax_last:-0.075,ay_last:0.978,az_last:0.125,a_tot_last:0.989,ax_avg:-0.073,rssi_dbm:-49.00,snr_db:12.50},
+  {time_recv_s:119,time_send_ms:124146,V_car_last:48.02,V_car_avg:48.20,V_car_min:48.02,V_car_max:48.37,V_esp32_last:2.088,RAW:2587,I_last:0.78,I_avg:-0.10,I_min:-0.98,I_max:0.78,I_raw:1655,ax_last:-0.073,ay_last:0.983,az_last:0.127,a_tot_last:0.994,ax_avg:-0.073,rssi_dbm:-49.00,snr_db:12.25},
+  // Samples continue with battery degradation pattern...
+  {time_recv_s:120,time_send_ms:125146,V_car_last:47.93,V_car_avg:48.09,V_car_min:47.93,V_car_max:48.25,V_esp32_last:2.084,RAW:2593,I_last:5.98,I_avg:2.43,I_min:-1.13,I_max:5.98,I_raw:1766,ax_last:-0.075,ay_last:0.981,az_last:0.124,a_tot_last:0.991,ax_avg:-0.075,rssi_dbm:-49.00,snr_db:12.00},
+  // === Heavy race load section (rows 343+) - voltage drops to ~42-43V, current spikes 20-67A ===
+  {time_recv_s:343,time_send_ms:1295146,V_car_last:42.64,V_car_avg:43.03,V_car_min:42.64,V_car_max:43.42,V_esp32_last:1.854,RAW:2353,I_last:36.48,I_avg:36.79,I_min:36.48,I_max:37.09,I_raw:2214,ax_last:1.106,ay_last:1.518,az_last:0.910,a_tot_last:2.087,ax_avg:0.470,rssi_dbm:-68.00,snr_db:12.00},
+  {time_recv_s:344,time_send_ms:1296146,V_car_last:40.89,V_car_avg:40.86,V_car_min:40.83,V_car_max:40.89,V_esp32_last:1.778,RAW:2192,I_last:28.15,I_avg:47.64,I_min:28.15,I_max:67.14,I_raw:2111,ax_last:-0.696,ay_last:0.836,az_last:-0.067,a_tot_last:1.090,ax_avg:-0.0,rssi_dbm:-78.00,snr_db:10.25},
+  {time_recv_s:345,time_send_ms:1297146,V_car_last:42.48,V_car_avg:41.88,V_car_min:41.28,V_car_max:42.48,V_esp32_last:1.847,RAW:2269,I_last:35.18,I_avg:28.23,I_min:21.27,I_max:35.18,I_raw:2257,ax_last:-0.038,ay_last:0.837,az_last:0.314,a_tot_last:0.895,ax_avg:-0.0,rssi_dbm:-75.00,snr_db:11.75},
+  {time_recv_s:346,time_send_ms:1298146,V_car_last:42.18,V_car_avg:42.30,V_car_min:42.18,V_car_max:42.41,V_esp32_last:1.834,RAW:2256,I_last:19.66,I_avg:20.08,I_min:19.66,I_max:20.51,I_raw:2034,ax_last:-0.054,ay_last:1.183,az_last:0.297,a_tot_last:1.221,ax_avg:-0.1,rssi_dbm:-80.00,snr_db:10.00},
+  {time_recv_s:347,time_send_ms:1299146,V_car_last:42.23,V_car_avg:42.17,V_car_min:42.11,V_car_max:42.23,V_esp32_last:1.836,RAW:2288,I_last:12.94,I_avg:19.59,I_min:12.94,I_max:26.24,I_raw:1826,ax_last:-0.129,ay_last:0.533,az_last:0.053,a_tot_last:0.551,ax_avg:-0.1,rssi_dbm:-85.00,snr_db:6.75},
+  {time_recv_s:348,time_send_ms:1300146,V_car_last:42.94,V_car_avg:42.76,V_car_min:42.57,V_car_max:42.94,V_esp32_last:1.867,RAW:2332,I_last:37.09,I_avg:27.23,I_min:17.37,I_max:37.09,I_raw:2063,ax_last:-0.014,ay_last:0.886,az_last:0.131,a_tot_last:0.896,ax_avg:-0.0,rssi_dbm:-97.00,snr_db:-4.25},
+  {time_recv_s:349,time_send_ms:1301146,V_car_last:42.83,V_car_avg:43.08,V_car_min:42.83,V_car_max:43.33,V_esp32_last:1.862,RAW:2309,I_last:21.96,I_avg:26.32,I_min:21.96,I_max:30.67,I_raw:2011,ax_last:-0.070,ay_last:0.819,az_last:0.195,a_tot_last:0.845,ax_avg:-0.0,rssi_dbm:-89.00,snr_db:3.25},
+  {time_recv_s:350,time_send_ms:1302146,V_car_last:43.13,V_car_avg:43.16,V_car_min:43.13,V_car_max:43.19,V_esp32_last:1.875,RAW:2331,I_last:21.50,I_avg:20.89,I_min:20.28,I_max:21.50,I_raw:1980,ax_last:-0.091,ay_last:0.706,az_last:0.351,a_tot_last:0.793,ax_avg:-0.2,rssi_dbm:-84.00,snr_db:7.75},
+  {time_recv_s:351,time_send_ms:1303146,V_car_last:42.78,V_car_avg:43.03,V_car_min:42.78,V_car_max:43.29,V_esp32_last:1.860,RAW:2318,I_last:14.62,I_avg:14.62,I_min:14.62,I_max:14.62,I_raw:1807,ax_last:-0.195,ay_last:0.470,az_last:0.283,a_tot_last:0.582,ax_avg:-0.2,rssi_dbm:-83.00,snr_db:8.00},
+  {time_recv_s:352,time_send_ms:1304146,V_car_last:42.39,V_car_avg:42.53,V_car_min:42.39,V_car_max:42.67,V_esp32_last:1.843,RAW:2314,I_last:13.63,I_avg:13.89,I_min:13.63,I_max:14.16,I_raw:2021,ax_last:-0.734,ay_last:1.357,az_last:0.589,a_tot_last:1.651,ax_avg:-0.1,rssi_dbm:-87.00,snr_db:5.50},
+  {time_recv_s:353,time_send_ms:1305146,V_car_last:42.69,V_car_avg:42.45,V_car_min:42.21,V_car_max:42.69,V_esp32_last:1.856,RAW:2090,I_last:18.67,I_avg:18.17,I_min:17.68,I_max:18.67,I_raw:1872,ax_last:-0.104,ay_last:1.368,az_last:0.360,a_tot_last:1.419,ax_avg:-0.2,rssi_dbm:-90.00,snr_db:3.00},
+  {time_recv_s:370,time_send_ms:1322146,V_car_last:42.30,V_car_avg:42.00,V_car_min:41.70,V_car_max:42.30,V_esp32_last:1.839,RAW:2297,I_last:19.05,I_avg:17.33,I_min:15.61,I_max:19.05,I_raw:2141,ax_last:-0.098,ay_last:0.280,az_last:-0.067,a_tot_last:0.304,ax_avg:-0.0,rssi_dbm:-95.00,snr_db:-2.75},
+  {time_recv_s:388,time_send_ms:1340146,V_car_last:42.53,V_car_avg:42.26,V_car_min:42.00,V_car_max:42.53,V_esp32_last:1.849,RAW:2299,I_last:12.40,I_avg:4.22,I_min:-3.96,I_max:12.40,I_raw:2002,ax_last:-0.447,ay_last:1.480,az_last:0.208,a_tot_last:1.561,ax_avg:-0.25,rssi_dbm:-93.00,snr_db:0.00},
+  {time_recv_s:391,time_send_ms:1343146,V_car_last:42.53,V_car_avg:42.58,V_car_min:42.53,V_car_max:42.64,V_esp32_last:1.849,RAW:2299,I_last:21.50,I_avg:20.81,I_min:20.12,I_max:21.50,I_raw:2008,ax_last:0.031,ay_last:1.121,az_last:0.197,a_tot_last:1.139,ax_avg:-0.03,rssi_dbm:-87.00,snr_db:4.75},
+  {time_recv_s:392,time_send_ms:1344146,V_car_last:42.48,V_car_avg:42.26,V_car_min:42.04,V_car_max:42.48,V_esp32_last:1.847,RAW:2303,I_last:20.58,I_avg:16.87,I_min:13.17,I_max:20.58,I_raw:1798,ax_last:-0.116,ay_last:1.291,az_last:0.197,a_tot_last:1.311,ax_avg:-0.1,rssi_dbm:-69.00,snr_db:12.25},
+  {time_recv_s:393,time_send_ms:1345146,V_car_last:43.03,V_car_avg:42.92,V_car_min:42.80,V_car_max:43.03,V_esp32_last:1.871,RAW:2314,I_last:17.45,I_avg:14.08,I_min:10.72,I_max:17.45,I_raw:2033,ax_last:0.065,ay_last:0.591,az_last:0.167,a_tot_last:0.617,ax_avg:-0.10,rssi_dbm:-61.00,snr_db:12.75},
+  {time_recv_s:394,time_send_ms:1346146,V_car_last:43.03,V_car_avg:42.69,V_car_min:42.34,V_car_max:43.03,V_esp32_last:1.871,RAW:2307,I_last:17.98,I_avg:21.69,I_min:17.98,I_max:25.40,I_raw:2033,ax_last:-0.091,ay_last:0.706,az_last:0.351,a_tot_last:0.793,ax_avg:-0.2,rssi_dbm:-68.00,snr_db:12.00},
+];

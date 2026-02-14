@@ -5,6 +5,7 @@ import { ConnectionButtons } from "@/components/dashboard/ConnectionButtons";
 import { PrimaryVoltageChart } from "@/components/dashboard/PrimaryVoltageChart";
 import { PrimaryCurrentChart } from "@/components/dashboard/PrimaryCurrentChart";
 import { SecondaryVoltageChart } from "@/components/dashboard/SecondaryVoltageChart";
+import { LiveAIPanel } from "@/components/dashboard/LiveAIPanel";
 import { useConnection } from "@/contexts/ConnectionContext";
 import {
   LineChart,
@@ -90,6 +91,9 @@ export default function LiveAnalysis() {
             status={isPrimaryConnected && currentPrimarySample && currentPrimarySample.rssi_dbm < -90 ? "warning" : "optimal"}
           />
         </div>
+
+        {/* AI Analysis */}
+        <LiveAIPanel />
 
         {/* Live Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

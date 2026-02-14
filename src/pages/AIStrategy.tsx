@@ -2,6 +2,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { AIStrategyPanel } from "@/components/dashboard/AIStrategyPanel";
 import { ConnectionButtons } from "@/components/dashboard/ConnectionButtons";
 import { MonteCarloPanel } from "@/components/dashboard/MonteCarloPanel";
+import { LiveAIPanel } from "@/components/dashboard/LiveAIPanel";
 import { useConnection } from "@/contexts/ConnectionContext";
 import { Brain, TrendingUp, Zap, Shield, Target, Sparkles, Battery, Gauge } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -133,6 +134,11 @@ export default function AIStrategy() {
               lastUpdated={new Date().toLocaleTimeString("en-US", { hour12: false })}
             />
             <MonteCarloPanel />
+
+            {/* AI Analysis Panel */}
+            <div className="lg:col-span-2">
+              <LiveAIPanel />
+            </div>
 
             {/* Live AI Recommendations */}
             <div className="bg-card rounded-lg border border-border p-4 lg:col-span-2">
