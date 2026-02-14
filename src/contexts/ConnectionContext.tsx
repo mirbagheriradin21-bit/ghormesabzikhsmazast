@@ -130,8 +130,8 @@ export function ConnectionProvider({ children }: { children: React.ReactNode }) 
       }
     }, 500);
 
-    // Track animation (36.3s lap)
-    const lapDuration = 36300;
+    // Track animation (2 minute lap = 120s)
+    const lapDuration = 120000;
     const updateInterval = 100;
     const positionIncrement = (100 / lapDuration) * updateInterval;
     trackIntervalRef.current = setInterval(() => {
