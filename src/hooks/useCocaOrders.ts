@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { fetchRoomOrders, saveRoomOrders } from "@/lib/roomApi";
 
 export interface CocaOrder {
   id: string;
@@ -10,42 +11,48 @@ export interface CocaOrder {
   time: number;
 }
 
-const STORAGE_KEY = "ds-coca-orders";
-const CHANNEL_NAME = "ds-coca-channel";
+const POLL_INTERVAL_MS = 3000;
 
-function readOrders(): CocaOrder[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as CocaOrder[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeOrders(orders: CocaOrder[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
-}
-
-export function useCocaOrders() {
-  const [orders, setOrders] = useState<CocaOrder[]>(() => readOrders());
+export function useCocaOrders(roomId: string | null) {
+  const [orders, setOrders] = useState<CocaOrder[]>([]);
+  const [synced, setSynced] = useState(false);
+  const ordersRef = useRef<CocaOrder[]>([]);
+  ordersRef.current = orders;
 
   useEffect(() => {
-    const channel = "BroadcastChannel" in window ? new BroadcastChannel(CHANNEL_NAME) : null;
+    if (!roomId) return;
+    let cancelled = false;
 
-    const onMessage = () => setOrders(readOrders());
-    channel?.addEventListener("message", onMessage);
-
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEY) setOrders(readOrders());
+    const poll = async () => {
+      try {
+        const remote = await fetchRoomOrders(roomId);
+        if (!cancelled) {
+          setOrders(remote);
+          setSynced(true);
+        }
+      } catch {
+        if (!cancelled) setSynced(false);
+      }
     };
-    window.addEventListener("storage", onStorage);
 
+    poll();
+    const interval = setInterval(poll, POLL_INTERVAL_MS);
     return () => {
-      channel?.removeEventListener("message", onMessage);
-      channel?.close();
-      window.removeEventListener("storage", onStorage);
+      cancelled = true;
+      clearInterval(interval);
     };
-  }, []);
+  }, [roomId]);
+
+  const persist = useCallback(
+    (next: CocaOrder[]) => {
+      setOrders(next);
+      if (!roomId) return;
+      saveRoomOrders(roomId, next)
+        .then(() => setSynced(true))
+        .catch(() => setSynced(false));
+    },
+    [roomId],
+  );
 
   const addOrder = useCallback(
     (name: string, emoji: string, drinkName: string, drinkEmoji: string, quantity: number) => {
@@ -58,27 +65,22 @@ export function useCocaOrders() {
         quantity,
         time: Date.now(),
       };
-      const next = [newOrder, ...readOrders()];
-      writeOrders(next);
-      setOrders(next);
-      new BroadcastChannel(CHANNEL_NAME).postMessage("update");
+      persist([newOrder, ...ordersRef.current]);
       return newOrder;
     },
-    [],
+    [persist],
   );
 
-  const removeOrder = useCallback((id: string) => {
-    const next = readOrders().filter((o) => o.id !== id);
-    writeOrders(next);
-    setOrders(next);
-    new BroadcastChannel(CHANNEL_NAME).postMessage("update");
-  }, []);
+  const removeOrder = useCallback(
+    (id: string) => {
+      persist(ordersRef.current.filter((o) => o.id !== id));
+    },
+    [persist],
+  );
 
   const clearOrders = useCallback(() => {
-    writeOrders([]);
-    setOrders([]);
-    new BroadcastChannel(CHANNEL_NAME).postMessage("update");
-  }, []);
+    persist([]);
+  }, [persist]);
 
-  return { orders, addOrder, removeOrder, clearOrders };
+  return { orders, addOrder, removeOrder, clearOrders, synced };
 }

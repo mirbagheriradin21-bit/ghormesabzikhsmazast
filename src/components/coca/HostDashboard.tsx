@@ -4,6 +4,7 @@ import { useCocaOrders } from "@/hooks/useCocaOrders";
 import { DRINKS } from "./drinks";
 
 interface HostDashboardProps {
+  roomId: string;
   onBack: () => void;
 }
 
@@ -15,13 +16,26 @@ function timeAgo(ts: number) {
   return `${minutes}m ago`;
 }
 
-export function HostDashboard({ onBack }: HostDashboardProps) {
-  const { orders, addOrder, removeOrder, clearOrders } = useCocaOrders();
+export function HostDashboard({ roomId, onBack }: HostDashboardProps) {
+  const { orders, addOrder, removeOrder, clearOrders, synced } = useCocaOrders(roomId);
   const [drink, setDrink] = useState(DRINKS[0]);
   const [quantity, setQuantity] = useState(5);
+  const [copied, setCopied] = useState(false);
+
+  const shareLink = `${window.location.origin}${window.location.pathname}?party=${roomId}`;
 
   const handleHostOrder = () => {
     addOrder("Host", "🧑‍✈️", drink.name, drink.emoji, quantity);
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(shareLink);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // clipboard may be unavailable; user can still select and copy manually
+    }
   };
 
   return (
@@ -35,6 +49,32 @@ export function HostDashboard({ onBack }: HostDashboardProps) {
       <h1 className="font-kid text-3xl font-extrabold text-white drop-shadow-md sm:text-4xl">
         Host Dashboard 🧑‍✈️
       </h1>
+
+      <div className="w-full max-w-xs rounded-3xl bg-white/95 p-5 shadow-lg">
+        <h2 className="font-kid text-xl font-extrabold text-red-700">📲 Invite guests</h2>
+        <p className="mt-1 text-sm font-semibold text-red-500/80">
+          Send this link so guests join your party:
+        </p>
+        <div className="mt-2 break-all rounded-xl bg-red-50 px-3 py-2 text-xs font-bold text-red-700">
+          {shareLink}
+        </div>
+        <button
+          onClick={handleCopy}
+          className="mt-2 w-full rounded-full bg-red-600 px-4 py-2 text-sm font-extrabold text-white shadow"
+        >
+          {copied ? "Copied! ✅" : "Copy Link"}
+        </button>
+        <p className="mt-2 text-xs font-semibold text-red-500/70">
+          Party code: <span className="font-mono">{roomId}</span>
+        </p>
+        <p className="mt-1 text-xs font-semibold">
+          {synced ? (
+            <span className="text-green-600">🟢 Live and syncing</span>
+          ) : (
+            <span className="text-orange-500">🟠 Connecting...</span>
+          )}
+        </p>
+      </div>
 
       <div className="w-full max-w-xs rounded-3xl bg-white/95 p-5 shadow-lg">
         <h2 className="font-kid text-xl font-extrabold text-red-700">Place a host order</h2>

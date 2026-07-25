@@ -6,11 +6,12 @@ import { DRINKS } from "./drinks";
 const AVATARS = ["🦄", "🐯", "🐸", "🦁", "🐵", "🐶", "🐱", "🦊"];
 
 interface GuestOrderProps {
+  roomId: string;
   onBack: () => void;
 }
 
-export function GuestOrder({ onBack }: GuestOrderProps) {
-  const { addOrder } = useCocaOrders();
+export function GuestOrder({ roomId, onBack }: GuestOrderProps) {
+  const { addOrder } = useCocaOrders(roomId);
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState(AVATARS[0]);
   const [drink, setDrink] = useState(DRINKS[0]);
