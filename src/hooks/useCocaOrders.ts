@@ -4,6 +4,9 @@ export interface CocaOrder {
   id: string;
   name: string;
   emoji: string;
+  drinkName: string;
+  drinkEmoji: string;
+  quantity: number;
   time: number;
 }
 
@@ -44,19 +47,25 @@ export function useCocaOrders() {
     };
   }, []);
 
-  const addOrder = useCallback((name: string, emoji: string) => {
-    const newOrder: CocaOrder = {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      name: name.trim() || "Guest",
-      emoji,
-      time: Date.now(),
-    };
-    const next = [newOrder, ...readOrders()];
-    writeOrders(next);
-    setOrders(next);
-    new BroadcastChannel(CHANNEL_NAME).postMessage("update");
-    return newOrder;
-  }, []);
+  const addOrder = useCallback(
+    (name: string, emoji: string, drinkName: string, drinkEmoji: string, quantity: number) => {
+      const newOrder: CocaOrder = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        name: name.trim() || "Guest",
+        emoji,
+        drinkName,
+        drinkEmoji,
+        quantity,
+        time: Date.now(),
+      };
+      const next = [newOrder, ...readOrders()];
+      writeOrders(next);
+      setOrders(next);
+      new BroadcastChannel(CHANNEL_NAME).postMessage("update");
+      return newOrder;
+    },
+    [],
+  );
 
   const removeOrder = useCallback((id: string) => {
     const next = readOrders().filter((o) => o.id !== id);
