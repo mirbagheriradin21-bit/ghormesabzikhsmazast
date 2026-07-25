@@ -12,6 +12,7 @@ import AIStrategy from "./pages/AIStrategy";
 import DataAnalysis from "./pages/DataAnalysis";
 import Alerts from "./pages/Alerts";
 import NotFound from "./pages/NotFound";
+import CocaColaOrder from "./pages/CocaColaOrder";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,8 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<CocaColaOrder />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/live-telemetry" element={<LiveTelemetry />} />
             <Route path="/live-analysis" element={<LiveAnalysis />} />
             <Route path="/track-map" element={<TrackMapPage />} />
