@@ -1,13 +1,11 @@
 export interface Drink {
   id: string;
   name: string;
-  emoji: string;
   color: string;
-  textColor: string;
 }
 
 export const DRINKS: Drink[] = [
-  { id: "coca-cola", name: "Coca-Cola", emoji: "🥤", color: "#E30613", textColor: "#FFFFFF" },
-  { id: "fanta-orange", name: "Fanta Orange", emoji: "🍊", color: "#F58220", textColor: "#FFFFFF" },
-  { id: "thums-up", name: "Thums Up", emoji: "👍", color: "#131E3A", textColor: "#FFFFFF" },
+  { id: "coca-cola", name: "Coca-Cola", color: "#e30613" },
+  { id: "fanta-orange", name: "Fanta Orange", color: "#f58220" },
+  { id: "thums-up", name: "Thums Up", color: "#131e3a" },
 ];

@@ -1,4 +1,6 @@
+import { User, Users } from "lucide-react";
 import { CocaLogo } from "./CocaLogo";
+import { coca, EASE } from "./theme";
 
 interface RoleSelectProps {
   onSelect: (role: "host" | "guest") => void;
@@ -6,34 +8,83 @@ interface RoleSelectProps {
 
 export function RoleSelect({ onSelect }: RoleSelectProps) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-8 px-6 py-10 text-center">
+    <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center gap-10 px-5 py-10">
       <CocaLogo />
+
       <div>
-        <h1 className="font-kid text-4xl font-extrabold text-white drop-shadow-md sm:text-5xl">
-          Coca-Cola Order Land! 🥤
+        <h1 className="font-coca text-2xl font-medium" style={{ color: coca.textPrimary }}>
+          Order drinks for the party
         </h1>
-        <p className="mt-3 text-lg font-semibold text-white/90 sm:text-xl">
-          Are you the Host or a Guest today?
+        <p className="mt-1.5 text-sm" style={{ color: coca.textSecondary }}>
+          Are you hosting, or ordering?
         </p>
       </div>
 
-      <div className="flex w-full max-w-md flex-col gap-5 sm:flex-row">
-        <button
+      <div className="flex flex-col gap-3">
+        <RoleCard
+          icon={<Users size={20} strokeWidth={1.75} />}
+          title="Host"
+          subtitle="See every order come in"
           onClick={() => onSelect("host")}
-          className="flex-1 rounded-3xl bg-yellow-400 px-6 py-8 text-2xl font-extrabold text-red-700 shadow-[0_8px_0_0_#b8860b] transition active:translate-y-2 active:shadow-none"
-        >
-          🧑‍✈️ I'm the Host
-          <div className="mt-1 text-sm font-semibold text-red-800/80">See all orders</div>
-        </button>
-
-        <button
+          primary
+        />
+        <RoleCard
+          icon={<User size={20} strokeWidth={1.75} />}
+          title="Guest"
+          subtitle="Order a drink"
           onClick={() => onSelect("guest")}
-          className="flex-1 rounded-3xl bg-white px-6 py-8 text-2xl font-extrabold text-red-600 shadow-[0_8px_0_0_#c0392b] transition active:translate-y-2 active:shadow-none"
-        >
-          🎈 I'm a Guest
-          <div className="mt-1 text-sm font-semibold text-red-500/80">Order a Coke!</div>
-        </button>
+        />
       </div>
     </div>
+  );
+}
+
+function RoleCard({
+  icon,
+  title,
+  subtitle,
+  onClick,
+  primary,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  onClick: () => void;
+  primary?: boolean;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center gap-4 rounded-2xl px-5 py-4 text-left active:scale-[0.99]"
+      style={{
+        backgroundColor: primary ? coca.accent : coca.card,
+        border: `1px solid ${primary ? coca.accent : coca.hairline}`,
+        transition: `transform 150ms ${EASE}`,
+      }}
+    >
+      <div
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+        style={{
+          backgroundColor: primary ? "rgba(255,255,255,0.16)" : coca.raised,
+          color: primary ? "#ffffff" : coca.textSecondary,
+        }}
+      >
+        {icon}
+      </div>
+      <div>
+        <div
+          className="text-sm font-medium"
+          style={{ color: primary ? "#ffffff" : coca.textPrimary }}
+        >
+          {title}
+        </div>
+        <div
+          className="mt-0.5 text-xs"
+          style={{ color: primary ? "rgba(255,255,255,0.75)" : coca.textSecondary }}
+        >
+          {subtitle}
+        </div>
+      </div>
+    </button>
   );
 }

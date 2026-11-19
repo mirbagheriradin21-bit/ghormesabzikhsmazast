@@ -4,9 +4,9 @@ import { fetchRoomOrders, saveRoomOrders } from "@/lib/roomApi";
 export interface CocaOrder {
   id: string;
   name: string;
-  emoji: string;
+  avatar: string;
   drinkName: string;
-  drinkEmoji: string;
+  drinkColor: string;
   quantity: number;
   time: number;
 }
@@ -55,13 +55,13 @@ export function useCocaOrders(roomId: string | null) {
   );
 
   const addOrder = useCallback(
-    (name: string, emoji: string, drinkName: string, drinkEmoji: string, quantity: number) => {
+    (name: string, avatar: string, drinkName: string, drinkColor: string, quantity: number) => {
       const newOrder: CocaOrder = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         name: name.trim() || "Guest",
-        emoji,
+        avatar,
         drinkName,
-        drinkEmoji,
+        drinkColor,
         quantity,
         time: Date.now(),
       };

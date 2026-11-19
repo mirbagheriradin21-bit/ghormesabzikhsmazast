@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Baloo+2:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -121,9 +121,9 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Playful kid-friendly display font */
-  .font-kid {
-    font-family: 'Baloo 2', cursive;
+  /* Interface font for the ordering flow */
+  .font-coca {
+    font-family: 'Space Grotesk', sans-serif;
   }
 
   /* Glowing border effect */

@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { ArrowLeft, Ticket } from "lucide-react";
 import { CocaLogo } from "./CocaLogo";
+import { coca, EASE } from "./theme";
 
 interface JoinPartyProps {
   onJoin: (code: string) => void;
@@ -10,31 +12,55 @@ export function JoinParty({ onJoin, onBack }: JoinPartyProps) {
   const [code, setCode] = useState("");
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <button onClick={onBack} className="self-start text-lg font-bold text-white/90">
-        ⬅ Back
-      </button>
+    <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center gap-8 px-5 py-10">
+      <div className="flex items-center justify-between">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1 text-sm font-medium"
+          style={{ color: coca.textSecondary }}
+        >
+          <ArrowLeft size={16} strokeWidth={1.75} />
+          Back
+        </button>
+        <CocaLogo size="sm" />
+      </div>
 
-      <CocaLogo size="sm" />
-
-      <h1 className="font-kid text-3xl font-extrabold text-white drop-shadow-md sm:text-4xl">
-        Enter the Party Code! 🎟️
-      </h1>
-      <p className="text-white/90 font-semibold">Ask your host for the code they were given.</p>
+      <div className="flex flex-col items-start gap-4">
+        <div
+          className="flex h-10 w-10 items-center justify-center rounded-full"
+          style={{ backgroundColor: coca.raised, color: coca.textSecondary }}
+        >
+          <Ticket size={18} strokeWidth={1.75} />
+        </div>
+        <div>
+          <h1 className="font-coca text-xl font-medium" style={{ color: coca.textPrimary }}>
+            Enter the party code
+          </h1>
+          <p className="mt-1 text-sm" style={{ color: coca.textSecondary }}>
+            Ask your host for their code
+          </p>
+        </div>
+      </div>
 
       <input
         value={code}
         onChange={(e) => setCode(e.target.value)}
         placeholder="Party code"
-        className="w-full max-w-xs rounded-2xl border-4 border-yellow-400 px-4 py-3 text-center text-lg font-bold text-red-700 outline-none"
+        className="rounded-xl px-4 py-3 text-sm outline-none"
+        style={{
+          backgroundColor: coca.card,
+          color: coca.textPrimary,
+          border: `1px solid ${coca.hairline}`,
+        }}
       />
 
       <button
         onClick={() => onJoin(code)}
         disabled={!code.trim()}
-        className="w-full max-w-xs rounded-full bg-yellow-400 px-8 py-4 text-xl font-extrabold text-red-700 shadow-[0_6px_0_0_#b8860b] transition active:translate-y-1 active:shadow-none disabled:opacity-50"
+        className="rounded-xl py-3.5 text-sm font-medium text-white disabled:opacity-40"
+        style={{ backgroundColor: coca.accent, transition: `opacity 150ms ${EASE}` }}
       >
-        Join the Party! 🎉
+        Join party
       </button>
     </div>
   );

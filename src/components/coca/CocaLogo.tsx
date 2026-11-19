@@ -1,57 +1,37 @@
+import { CupSoda } from "lucide-react";
+import { coca } from "./theme";
+
 interface CocaLogoProps {
   size?: "sm" | "lg";
 }
 
 export function CocaLogo({ size = "lg" }: CocaLogoProps) {
   const isLarge = size === "lg";
+  const badge = isLarge ? 56 : 40;
+  const icon = isLarge ? 28 : 20;
 
   return (
-    <div className="flex flex-col items-center select-none">
-      <svg
-        width={isLarge ? 220 : 120}
-        height={isLarge ? 220 : 120}
-        viewBox="0 0 220 220"
-        className="drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]"
+    <div className="flex items-center gap-3 select-none">
+      <div
+        className="flex shrink-0 items-center justify-center rounded-xl"
+        style={{ width: badge, height: badge, backgroundColor: coca.accent }}
       >
-        <circle cx="110" cy="110" r="105" fill="#E30613" stroke="#FFFFFF" strokeWidth="8" />
-        <circle cx="110" cy="110" r="105" fill="none" stroke="#FFD400" strokeWidth="4" strokeDasharray="6 8" />
-        <text
-          x="110"
-          y="86"
-          textAnchor="middle"
-          fontFamily="'Baloo 2', cursive"
-          fontWeight={800}
-          fontSize="30"
-          fill="#FFFFFF"
+        <CupSoda size={icon} color="#ffffff" strokeWidth={1.75} />
+      </div>
+      <div className="text-left">
+        <div
+          className={`font-coca font-medium leading-none ${isLarge ? "text-xl" : "text-base"}`}
+          style={{ color: coca.textPrimary }}
         >
-          Dayan &amp;
-        </text>
-        <text
-          x="110"
-          y="118"
-          textAnchor="middle"
-          fontFamily="'Baloo 2', cursive"
-          fontWeight={800}
-          fontSize="30"
-          fill="#FFD400"
+          Dayan &amp; Shahan
+        </div>
+        <div
+          className={`mt-0.5 font-normal ${isLarge ? "text-xs" : "text-[11px]"}`}
+          style={{ color: coca.textMuted }}
         >
-          Shahan
-        </text>
-        <text
-          x="110"
-          y="146"
-          textAnchor="middle"
-          fontFamily="'Baloo 2', cursive"
-          fontWeight={700}
-          fontSize="15"
-          fill="#FFFFFF"
-        >
-          DELIVERY CO.
-        </text>
-        <text x="110" y="182" textAnchor="middle" fontSize="34">
-          🥤🚴
-        </text>
-      </svg>
+          Delivery Co.
+        </div>
+      </div>
     </div>
   );
 }
