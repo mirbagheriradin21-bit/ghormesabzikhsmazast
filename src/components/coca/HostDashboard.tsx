@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Check, CheckCircle2, Copy, Minus, Plus, Trash2, Wifi, WifiOff } from "lucide-react";
+import { ArrowLeft, Check, CheckCircle2, Minus, Plus, Trash2, Wifi, WifiOff } from "lucide-react";
 import { CocaLogo } from "./CocaLogo";
 import { useCocaOrders } from "@/hooks/useCocaOrders";
 import { DRINKS } from "./drinks";
@@ -22,23 +22,11 @@ export function HostDashboard({ roomId, onBack }: HostDashboardProps) {
   const { orders, addOrder, removeOrder, clearOrders, synced } = useCocaOrders(roomId);
   const [drink, setDrink] = useState(DRINKS[0]);
   const [quantity, setQuantity] = useState(5);
-  const [copied, setCopied] = useState(false);
 
-  const shareLink = `${window.location.origin}${window.location.pathname}?party=${roomId}`;
   const ticketCount = orders.length;
 
   const handleHostOrder = () => {
     addOrder("Host", coca.accent, drink.name, drink.color, quantity);
-  };
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(shareLink);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      // clipboard may be unavailable; the link is still visible to copy manually
-    }
   };
 
   return (
@@ -55,50 +43,18 @@ export function HostDashboard({ roomId, onBack }: HostDashboardProps) {
         <CocaLogo size="sm" />
       </div>
 
-      <h1 className="font-coca text-2xl font-medium" style={{ color: coca.textPrimary }}>
-        Host dashboard
-      </h1>
-
-      <section
-        className="rounded-2xl p-5"
-        style={{ backgroundColor: coca.card, border: `1px solid ${coca.hairline}` }}
-      >
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-medium" style={{ color: coca.textPrimary }}>
-            Invite guests
-          </h2>
-          <div className="flex items-center gap-1.5 text-xs font-medium" style={{ color: synced ? coca.positive : coca.warning }}>
-            {synced ? <Wifi size={14} strokeWidth={2} /> : <WifiOff size={14} strokeWidth={2} />}
-            {synced ? "Live" : "Connecting"}
-          </div>
-        </div>
-        <p className="mt-1 text-sm" style={{ color: coca.textSecondary }}>
-          Share this link so guests can join
-        </p>
-
+      <div className="flex items-center justify-between">
+        <h1 className="font-coca text-2xl font-medium" style={{ color: coca.textPrimary }}>
+          Host dashboard
+        </h1>
         <div
-          className="mt-3 break-all rounded-xl px-3.5 py-2.5 text-xs"
-          style={{ backgroundColor: coca.raised, color: coca.textSecondary, fontFamily: "'JetBrains Mono', monospace" }}
+          className="flex items-center gap-1.5 text-xs font-medium"
+          style={{ color: synced ? coca.positive : coca.warning }}
         >
-          {shareLink}
+          {synced ? <Wifi size={14} strokeWidth={2} /> : <WifiOff size={14} strokeWidth={2} />}
+          {synced ? "Live" : "Connecting"}
         </div>
-
-        <button
-          onClick={handleCopy}
-          className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-medium text-white active:scale-[0.98]"
-          style={{ backgroundColor: coca.accent, transition: `transform 150ms ${EASE}` }}
-        >
-          {copied ? <Check size={15} strokeWidth={2} /> : <Copy size={15} strokeWidth={2} />}
-          {copied ? "Copied" : "Copy link"}
-        </button>
-
-        <p
-          className="mt-3 text-xs tabular-nums"
-          style={{ color: coca.textMuted, fontFamily: "'JetBrains Mono', monospace" }}
-        >
-          Party code {roomId}
-        </p>
-      </section>
+      </div>
 
       <section
         className="rounded-2xl p-5"
